@@ -1,14 +1,9 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./src/**/*.{ts,tsx}"],
+  content: ["./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
-    extend: {
-      fontFamily: {
-        ibm: ["IBM Plex Sans Thai", "sans-serif"],
-        ui: ["ui-sans-serif", "sans-serif"],
-      },
-    },
+    extend: {},
   },
   plugins: [],
 };

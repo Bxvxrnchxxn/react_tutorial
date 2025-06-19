@@ -4,9 +4,9 @@ import { Sparkles, Menu } from "lucide-react";
 import { useState } from "react";
 
 const pageItems = [
-  { href: "#home", label: "หน้าแรก" },
-  { href: "#about", label: "เกี่ยวกับ" },
-  { href: "#contact", label: "ติดต่อเรา" },
+  { href: "#home", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#contact", label: "Contact" },
 ];
 
 const Navigation = () => {
@@ -20,7 +20,7 @@ const Navigation = () => {
           className="flex items-center gap-2 hover-scale transition-transform duration-300"
         >
           <Sparkles className="animate-float text-purple-400" />
-          <span className="ml-2 text-3xl font-ibm font-semibold bg-gradient-to-t from-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <span className="ml-2 text-3xl font-semibold bg-gradient-to-t from-purple-400 to-pink-400 bg-clip-text text-transparent">
             Portfolio
           </span>
         </a>
