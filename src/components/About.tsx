@@ -40,7 +40,7 @@ const About = () => {
           style={{ animationDelay: "2s" }}
         />
       </div>
-      <div className="text-5xl font-bold mb-4">
+      <div className="md:text-5xl text-4xl font-bold mb-4">
         <BouncingWord word="About Me" span={0.35} />
       </div>
       <div className="flex flex-row gap-2 mb-4">
@@ -94,10 +94,10 @@ const About = () => {
           </p>
 
           <div className="flex gap-4">
-            <Button className="bg-purple-600 text-gray-100 rounded-full transition transform duration-300 hover:-translate-y-2 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]">
+            <Button className="bg-purple-600 text-gray-100 rounded-full hover:bg-purple-600 transition transform duration-300 hover:-translate-y-2 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]">
               View Projects
             </Button>
-            <Button className="bg-pink-600  text-gray-100 rounded-full transition transform duration-300 hover:-translate-y-2 hover:drop-shadow-[0_0_8px_rgba(244,114,182,1)]">
+            <Button className="bg-pink-600  text-gray-100 rounded-full hover:bg-pink-600 transition transform duration-300 hover:-translate-y-2 hover:drop-shadow-[0_0_8px_rgba(244,114,182,1)]">
               Contact Me
             </Button>
           </div>

@@ -175,11 +175,16 @@ body {
   animation: float 3s ease-in-out infinite;
 }
 
-.animate-shimmer {
+.animate-shimmer-text {
   background: linear-gradient(90deg, transparent, #c084fc, #f472b6 , transparent);
   background-size: 200%;
   animation: shimmer 3s ease-in-out infinite;
   background-clip: text;
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, #c084fc, #f472b6 , transparent);
+  background-size: 200%;
+  animation: shimmer 3s ease-in-out infinite;
 }
 @keyframes spin-y {
   0% {
@@ -244,3 +249,57 @@ body {
     animation: glow-pulse 1.5s ease-in-out infinite;
   }
 }
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+@keyframes fade-in-left {
+  0%   { opacity: 0; transform: translateX(-30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.8s ease-out forwards;
+  opacity: 0;
+}
+@keyframes fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-left {
+  animation: fade-in-left 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fade-out-left {
+  0%   { opacity: 1; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(-30px); }
+}
+
+@layer utilities {
+  .animate-fade-out-left {
+    animation: fade-out-left 0.3s ease-out forwards;
+  }
+}
+

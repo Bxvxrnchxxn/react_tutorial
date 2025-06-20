@@ -1,19 +1,45 @@
 "use client";
 import Link from "next/link";
-import { Sparkles, Menu } from "lucide-react";
-import { useState } from "react";
+import { Sparkles, Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const pageItems = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
   { href: "#contact", label: "Contact" },
 ];
 
 const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [closing, setClosing] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const toggleMenu = () => {
+    if (menuOpen) {
+      setClosing(true);
+      setTimeout(() => {
+        setMenuOpen(false);
+        setClosing(false);
+      }, 350);
+    } else {
+      setMenuOpen(true);
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="bg-transparent text-white px-6 py-4 absolute w-screen z-50">
+    <nav
+      className={`fixed top-0 text-white px-6 py-4  w-screen z-50 ${
+        scrolled ? "bg-slate-900" : "bg-transparent"
+      } transition-all duration-300`}
+    >
       <div className="flex justify-between items-center max-w-7xl mx-auto">
         <a
           href="#home"
@@ -34,19 +60,30 @@ const Navigation = () => {
           ))}
         </ul>
 
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden focus:outline-none"
-        >
-          <Menu size={28} />
+        <button onClick={toggleMenu} className="md:hidden focus:outline-none">
+          {menuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {menuOpen && (
-        <ul className="md:hidden mt-4 px-6 flex flex-col gap-4">
-          {pageItems.map((item) => (
-            <li key={item.href} className="border-b border-white pb-2">
-              <Link href={item.href}>{item.label}</Link>
+      {(menuOpen || closing) && (
+        <ul
+          className={`md:hidden mt-4 py-4 flex flex-col gap-4
+            ${
+              !scrolled
+                ? "bg-gradient-to-r from-slate-900 to-purple-900"
+                : "bg-slate-900"
+            }
+            ${menuOpen ? "animate-slide-up" : "animate-fade-out-left"}`}
+        >
+          {pageItems.map((item, index) => (
+            <li
+              key={item.href}
+              className="border-b border-white pb-2 animate-fade-in-left"
+              style={{ animationDelay: `${index * 0.3}s` }}
+            >
+              <Link href={item.href} onClick={toggleMenu}>
+                {item.label}
+              </Link>
             </li>
           ))}
         </ul>
