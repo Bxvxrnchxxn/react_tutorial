@@ -105,10 +105,10 @@ const About = () => {
         <div className="flex flex-col items-center justify-center md:flex-1">
           <div className="relative h-80 w-80">
             <div className="h-full w-full bg-gradient-to-br from-purple-600 to-pink-600 rounded-full opacity-20 animate-bounce-in-out" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  h-60 w-60 rounded-full bg-slate-700 animate-bounce-in-out animate-glow flex items-center justify-center">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  h-60 w-60 rounded-full bg-slate-700 animate-bounce-in-out animate-glow-pulse flex items-center justify-center">
               <CodeXml
                 size={70}
-                className="text-purple-400 animate-glow animate-float"
+                className="text-purple-400 animate-glow-pulse animate-float"
               />
             </div>
           </div>

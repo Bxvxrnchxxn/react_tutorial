@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
+import { Contact } from "@/components/Contact";
 
 export default function Home() {
   return (
@@ -19,6 +20,9 @@ export default function Home() {
       </section>
       <section id="projects" className="md:scroll-mt-15">
         <Projects />
+      </section>
+      <section id="contact" className="md:scroll-mt-15">
+        <Contact />
       </section>
     </div>
   );
