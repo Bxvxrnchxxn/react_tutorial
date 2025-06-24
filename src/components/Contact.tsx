@@ -36,9 +36,18 @@ export const Contact = () => {
     <div className="bg-slate-700 flex flex-col items-center justify-center min-h-screen py-16 relative">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 right-10 w-6 h-6 border-2 border-purple-400/30 rounded-full animate-pulse-scale"></div>
-        <div className="absolute bottom-20 left-10 w-8 h-8 border-2 border-pink-400/30 rounded-full animate-float" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/4 w-2 h-2 bg-purple-400/50 rounded-full animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-20 left-1/2 w-4 h-4 bg-pink-400/30 rounded-full animate-pulse-scale" style={{ animationDelay: '0.5s' }}></div>
+        <div
+          className="absolute bottom-20 left-10 w-8 h-8 border-2 border-pink-400/30 rounded-full animate-float"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/4 w-2 h-2 bg-purple-400/50 rounded-full animate-float"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute top-20 left-1/2 w-4 h-4 bg-pink-400/30 rounded-full animate-pulse-scale"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
       </div>
       <div className="animate-blink flex flex-col mb-4">
         <div className="md:text-5xl text-4xl font-bold text-gray-100 mb-4">
@@ -46,7 +55,7 @@ export const Contact = () => {
         </div>
         <div className="animate-shimmer w-40 h-1.5 bg-gradient-to-r from-purple-400 to-pink-400 mb-6 mx-auto inline"></div>
       </div>
-      <div className="align-center text-gray-100 w-full px-12 md:text-lg text-base text-center">
+      <div className="align-center text-gray-100 w-full px-12 md:text-lg text-base text-center pb-8">
         Have a project in mind? Let&apos;s discuss how we can work together to
         bring your ideas to life.
       </div>
