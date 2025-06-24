@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import { DialogProjectDetail } from "./DialogProjectDetail";
 import React, { useLayoutEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink, Eye } from "lucide-react";
@@ -12,6 +13,31 @@ export const Projects = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     if (!containerRef.current) return;
+
+    // batch สำหรับภาพ
+    ScrollTrigger.batch(".reveal-image", {
+      start: "top 70%",
+      onEnter: (batch) => {
+        gsap.to(batch, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          stagger: 0.1,
+        });
+      },
+      onLeaveBack: (batch) => {
+        gsap.to(batch, {
+          autoAlpha: 0,
+          y: 30,
+          duration: 0.8,
+          ease: "power2.out",
+          stagger: 0.1,
+        });
+      },
+    });
+
+    // batch สำหรับแต่ละบรรทัดของข้อความ
     containerRef.current
       .querySelectorAll<HTMLElement>(".reveal-text-line")
       .forEach((el) => {
@@ -19,28 +45,30 @@ export const Projects = () => {
           type: "lines",
           linesClass: "line-child",
         });
-        gsap.fromTo(
-          split.lines,
-          {
-            y: 30,
-            autoAlpha: 0,
+        ScrollTrigger.batch(split.lines, {
+          start: "top 80%",
+          onEnter: (batch) => {
+            gsap.to(batch, {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power3.out",
+              stagger: 0.1,
+            });
           },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 1,
-            stagger: 0.1,
-            scrollTrigger: {
-              trigger: el,
-              start: "top 80%",
-              end: "top 20%",
-              scrub: true,
-              toggleActions: "play reverse play reverse",
-            },
-          }
-        );
+          onLeaveBack: (batch) => {
+            gsap.to(batch, {
+              autoAlpha: 0,
+              y: 50,
+              duration: 0.6,
+              ease: "power3.out",
+              stagger: 0.1,
+            });
+          },
+        });
       });
   }, []);
+
   const projects = [
     {
       id: 1,
@@ -79,7 +107,7 @@ export const Projects = () => {
   return (
     <div
       ref={containerRef}
-      className="flex flex-col items-center justify-center min-h-screen bg-slate-800 py-16"
+      className="flex flex-col items-center justify-center min-h-screen bg-slate-800 py-16 px-8"
     >
       <div className="flex flex-col animate-float">
         <div className="md:text-5xl text-4xl font-bold mb-6 text-gray-100">
@@ -90,7 +118,7 @@ export const Projects = () => {
       <div className="md:text-lg text-base text-gray-300">
         Scroll to experience interactive GSAP-powered animations
       </div>
-      <div className="grid grid-cols-1 gap-8 mt-12">
+      <div className="grid grid-cols-1 gap-16 mt-12">
         {projects.map((project, index) => (
           <div
             key={project.id}
@@ -99,27 +127,29 @@ export const Projects = () => {
             } gap-14`}
           >
             {/* image card */}
-            <div className="group relative overflow-hidden rounded-2xl perspective-1000 min-w-xl">
+            <div className="group relative overflow-hidden rounded-2xl w-auto aspect-video">
               <img
                 src={project.image}
                 alt={project.title}
-                className="object-cover w-full h-80 transition-transform duration-300 ease-out group-hover:scale-110"
+                className="reveal-image w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-110"
               />
               <div
                 className="absolute inset-0 bg-gradient-to-b from-purple-500/0 via-purple-500/20 to-purple-500/70 
-              opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+               opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               />
-              <div
-                className="absolute top-5 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 
-              w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center cursor-pointer 
-              hover:shadow-purple-500/50 hover:scale-110 hover:shadow-[0_0_12px_3px_rgba(192,132,252,1)]"
-              >
-                <Eye size={24} className="text-white" />
-              </div>
+              <DialogProjectDetail projectId={project.id}>
+                <div
+                  className="absolute top-5 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 
+                 w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center cursor-pointer 
+                 hover:shadow-purple-500/50 hover:scale-110 hover:shadow-[0_0_12px_3px_rgba(192,132,252,1)]"
+                >
+                  <Eye size={24} className="text-white" />
+                </div>
+              </DialogProjectDetail>
             </div>
 
             {/* text content */}
-            <div className="flex flex-col justify-center gap-6">
+            <div className="flex flex-col justify-center gap-6 px-2">
               <span className="text-sm font-semibold text-purple-400 uppercase reveal-text-line">
                 PROJECT {String(index + 1).padStart(2, "0")}
               </span>
@@ -129,12 +159,12 @@ export const Projects = () => {
               <p className="text-gray-300 reveal-text-line">
                 {project.description}
               </p>
-
               <div className="flex flex-wrap gap-3 reveal-text-line">
                 {project.technologies.map((tech) => (
                   <Button
                     key={tech}
-                    className="rounded-full mx-1 bg-purple-600/20 text-purple-400 border border-purple-400 hover:bg-purple-600/20 hover:shadow-[0_0_12px_3px_rgba(192,132,252,0.75)] transition"
+                    className="rounded-full mx-1 bg-purple-600/20 text-purple-400 border 
+                    border-purple-400 hover:bg-purple-600/20 hover:shadow-[0_0_12px_3px_rgba(192,132,252,0.75)] transition"
                   >
                     {tech}
                   </Button>

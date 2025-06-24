@@ -122,11 +122,13 @@
   }
   html {
     font-family: "IBM Plex Sans Thai", sans-serif;
+    overflow-x: hidden;
   }
 }
 
 body {
   font-family: "IBM Plex Sans Thai", sans-serif;
+  overflow-x: hidden;
 }
 
 .hover-scale {

@@ -75,7 +75,7 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 px-6 py-4 transition-colors duration-300
+      className={`fixed top-0 left-0 right-0 w-full z-50 px-6 py-4 transition-colors duration-300
       ${scrolled ? "bg-slate-900" : "bg-transparent"}`}
     >
       <div className="flex justify-between items-center max-w-7xl mx-auto">
@@ -96,7 +96,10 @@ const Navigation = () => {
         {/* desktop menu */}
         <ul className="hidden md:flex gap-10">
           {pageItems.map((it) => (
-            <li key={it.href} className="group flex flex-col cursor-pointer text-gray-100">
+            <li
+              key={it.href}
+              className="group flex flex-col cursor-pointer text-gray-100"
+            >
               <Link href={"#" + it.href} data-scrollto={it.href}>
                 {it.label}
               </Link>
@@ -109,7 +112,7 @@ const Navigation = () => {
           ))}
         </ul>
 
-        <button onClick={toggleMenu} className="md:hidden">
+        <button onClick={toggleMenu} className="md:hidden text-gray-100">
           {menuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
@@ -117,7 +120,7 @@ const Navigation = () => {
       {/* mobile dropdown */}
       {(menuOpen || closing) && (
         <ul
-          className={`md:hidden mt-4 py-4 flex flex-col gap-4
+          className={`md:hidden mt-4 py-4 flex flex-col gap-4 absolute top-full left-0 right-0 w-full
          ${
            scrolled
              ? "bg-slate-900"
@@ -129,7 +132,7 @@ const Navigation = () => {
             <li
               key={it.href}
               style={{ animationDelay: `${i * 0.3}s` }}
-              className="border-b border-white pb-2 animate-fade-in-left"
+              className="border-b border-white pb-2 animate-fade-in-left text-gray-100 px-6"
             >
               <Link
                 href={"#" + it.href}
