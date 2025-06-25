@@ -394,3 +394,28 @@ body {
   display: inline-flex !important;
   width: auto !important;
 }
+.glow-on-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.glow-on-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.8s;
+}
+
+.glow-on-hover:hover::before {
+  left: 100%;
+}
+
+.glow-on-hover:hover {
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+  transform: translateY(-2px);
+}

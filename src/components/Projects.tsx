@@ -72,36 +72,73 @@ export const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
+      title: "LASDB",
       description:
-        "A full-stack e-commerce solution with React, Node.js, and Stripe integration.",
-      image:
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+        "Website compregensive academic management platform covering books, article, jounals, projects, patents, research and awards.",
+      image: "/imgs/lasdb.png",
+      technologies: [
+        "Vue",
+        "Nuxt",
+        "Vuetify",
+        "Github",
+        "Docker",
+        "Postman",
+        "Javascript",
+      ],
       codeLink: "#",
-      demoLink: "#",
+      demoLink: "https://oos.flas.kps.ku.ac.th/lasdb/Home",
     },
     {
       id: 2,
-      title: "Task Management App",
-      description:
-        "A collaborative task management application with real-time updates and team features.",
-      image:
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
-      technologies: ["React", "Firebase", "Tailwind CSS"],
+      title: "ProofEng Solution",
+      description: "Website English grammar checking and proofreading service.",
+      image: "/imgs/proofeng.png",
+      technologies: [
+        "Vue",
+        "Nuxt",
+        "Vuetify",
+        "Github",
+        "Docker",
+        "Postman",
+        "Javascript",
+      ],
       codeLink: "#",
-      demoLink: "#",
+      demoLink: "https://www.proofengsolutions.com/Home",
     },
     {
       id: 3,
-      title: "Weather Dashboard",
-      description:
-        "A beautiful weather application with location-based forecasts and interactive charts.",
-      image:
-        "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop",
-      technologies: ["React", "Chart.js", "Weather API"],
+      title: "ProofEngThailand",
+      description: "Website English grammar checking and proofreading service.",
+      image: "/imgs/defaultImgs.jpg",
+      technologies: [
+        "Vue",
+        "Nuxt",
+        "Vuetify",
+        "Github",
+        "Docker",
+        "Postman",
+        "Javascript",
+      ],
       codeLink: "#",
-      demoLink: "#",
+      demoLink: "https://proofengthailand.com/home",
+    },
+    {
+      id: 4,
+      title: "Clockin",
+      description:
+        "Website for timestamp in/out work and manage human resource.",
+      image: "/imgs/timestamp.png",
+      technologies: [
+        "Vue",
+        "Nuxt",
+        "Vuetify",
+        "Github",
+        "Docker",
+        "Postman",
+        "Javascript",
+      ],
+      codeLink: "#",
+      demoLink: "https://uat.thaijobjob.com/timestamp/",
     },
   ];
   return (
@@ -124,14 +161,14 @@ export const Projects = () => {
             key={project.id}
             className={`flex flex-col md:flex-row ${
               index % 2 === 1 ? "md:flex-row-reverse" : ""
-            } gap-14`}
+            } gap-20`}
           >
             {/* image card */}
             <div className="group relative overflow-hidden rounded-2xl w-auto aspect-video">
               <img
                 src={project.image}
                 alt={project.title}
-                className="reveal-image w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-110"
+                className="reveal-image w-full md:max-w-[35vw] md:h-[20vw] h-full object-cover transition-transform duration-300 ease-out"
               />
               <div
                 className="absolute inset-0 bg-gradient-to-b from-purple-500/0 via-purple-500/20 to-purple-500/70 
@@ -139,7 +176,7 @@ export const Projects = () => {
               />
               <DialogProjectDetail projectId={project.id}>
                 <div
-                  className="absolute top-5 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 
+                  className="sm:reveal-image absolute top-5 right-6 opacity-0 md:group-hover:opacity-100  transition-all duration-300 
                  w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center cursor-pointer 
                  hover:shadow-purple-500/50 hover:scale-110 hover:shadow-[0_0_12px_3px_rgba(192,132,252,1)]"
                 >
@@ -156,7 +193,7 @@ export const Projects = () => {
               <h3 className="text-3xl md:text-4xl font-bold text-gray-100 reveal-text-line">
                 {project.title}
               </h3>
-              <p className="text-gray-300 reveal-text-line">
+              <p className="text-gray-300 text-base md:text-lg reveal-text-line">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-3 reveal-text-line">
@@ -174,16 +211,20 @@ export const Projects = () => {
               <div className="flex flex-row gap-6">
                 <a
                   href={project.codeLink}
-                  className="reveal-text-line flex items-center gap-2 text-gray-300 hover:scale-110 transition-transform"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="reveal-text-line flex items-center text-gray-300 hover:scale-110 transition-transform"
                 >
-                  <Github size={18} />
+                  <Github size={18} className="mr-2" />
                   <span>Code</span>
                 </a>
                 <a
                   href={project.demoLink}
-                  className="reveal-text-line flex items-center gap-2 text-gray-300 hover:scale-110 transition-transform"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="reveal-text-line flex items-center text-gray-300 hover:scale-110 transition-transform"
                 >
-                  <ExternalLink size={18} />
+                  <ExternalLink size={18} className="mr-2" />
                   <span>Live Demo</span>
                 </a>
               </div>

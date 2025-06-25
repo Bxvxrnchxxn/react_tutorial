@@ -1,29 +1,48 @@
+"use client";
 import React from "react";
-import { Star, CodeXml, Code, Globe, Palette, Smartphone } from "lucide-react";
+import { Star, CodeXml, Code, Smartphone } from "lucide-react";
 import BouncingWord from "@/components/BouncingWord";
 import { Button } from "@/components/ui/button";
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+gsap.registerPlugin(ScrollToPlugin);
 
 const About = () => {
+  const scrollToProject = () => {
+    const target = document.querySelector<HTMLElement>("#projects");
+    if (target) {
+      gsap.to(window, {
+        duration: 1,
+        ease: "power.inOut",
+        scrollTo: { y: target, offsetY: 50, autoKill: true },
+      });
+    }
+  };
+  const scrollToContact = () => {
+    const target = document.querySelector<HTMLElement>("#contact");
+    if (target) {
+      gsap.to(window, {
+        duration: 1,
+        ease: "power.inOut",
+        scrollTo: { y: target, offsetY: 50, autoKill: true },
+      });
+    }
+  };
   const skills = [
     {
       icon: Code,
       name: "Frontend Development",
-      description: "React, TypeScript, Tailwind CSS",
+      description: "React, Next, Tailwind CSS",
     },
     {
-      icon: Globe,
-      name: "Backend Development",
-      description: "Node.js, Express, MongoDB",
-    },
-    {
-      icon: Palette,
+      icon: Code,
       name: "Frontend Development",
-      description: "React, TypeScript, Tailwind CSS",
+      description: "Vue, Nuxt, Vuetify",
     },
     {
       icon: Smartphone,
-      name: "Full Stack Development",
-      description: "MERN Stack, Next.js",
+      name: "Responsive Design",
+      description: "Designing for all devices",
     },
   ];
   return (
@@ -76,28 +95,35 @@ const About = () => {
         />
       </div>
       <div className="mx-8 max-w-200 min-w-10 text-center py-7 text-xl text-gray-300">
-        I&apos; m a passionate developer with 5+ years of experience creating
-        digital solutions that combine beautiful design with robust
-        functionality.
+        Hello, my name is Bovorn Dejsuwannachai (Choon). I’m Frontend Developer
+        crafting responsive, user-friendly.
       </div>
       <div className="flex flex-col md:flex-row gap-8 py-8">
         <div className="flex flex-col gap-8 md:flex-1 px-30 self-end">
           <p className="text-xl text-gray-300 max-w-250">
-            With a background in both design and development, I bring a unique
-            perspective to every project. I believe in creating user-centered
-            experiences that not only look great but also solve real problems.
+            I work daily with Vue.js, Nuxt.js and Vuetify and tools like Docker,
+            GitHub and Postman. I thrive on clean code, performance tuning and
+            collaborative problem solving.
           </p>
           <p className="text-xl text-gray-300 max-w-250">
-            When I&apos;m not coding, you can find me exploring new
-            technologies, contributing to open source, or sharing knowledge with
-            the developer community.
+            As a Software Engineer at iNet (Internet Thailand Public Company
+            Limited.), I build and maintain scalable client portals and admin
+            dashboards. Let’s create something great together!
           </p>
 
           <div className="flex gap-4">
-            <Button className="bg-purple-600 text-gray-100 rounded-full hover:bg-purple-600 transition transform duration-300 hover:-translate-y-2 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]">
+            <Button
+              onClick={scrollToProject}
+              className="bg-purple-600 text-gray-100 rounded-full hover:bg-purple-600 transition transform 
+              duration-300 hover:-translate-y-2 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)] cursor-pointer"
+            >
               View Projects
             </Button>
-            <Button className="bg-pink-600  text-gray-100 rounded-full hover:bg-pink-600 transition transform duration-300 hover:-translate-y-2 hover:drop-shadow-[0_0_8px_rgba(244,114,182,1)]">
+            <Button
+              onClick={scrollToContact}
+              className="bg-pink-600  text-gray-100 rounded-full hover:bg-pink-600 transition transform 
+              duration-300 hover:-translate-y-2 hover:drop-shadow-[0_0_8px_rgba(244,114,182,1)] cursor-pointer"
+            >
               Contact Me
             </Button>
           </div>
@@ -115,7 +141,7 @@ const About = () => {
         </div>
       </div>
       <div className="container mx-auto w-full px-8 py-16">
-        <div className="grid md:grid-cols-4 gap-8 w-full">
+        <div className="grid md:grid-cols-3 gap-8 w-full">
           {skills.map((skill, index) => (
             <div
               key={index}

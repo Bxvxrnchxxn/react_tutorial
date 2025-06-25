@@ -3,8 +3,42 @@ import React from "react";
 import { TypeAnimation } from "react-type-animation";
 import { Github, Linkedin, Mail, Sparkles, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+gsap.registerPlugin(ScrollToPlugin);
 
 const Hero = () => {
+  const scrollToNext = () => {
+    const target = document.querySelector<HTMLElement>("section + section");
+    if (target) {
+      gsap.to(window, {
+        duration: 1,
+        ease: "power.inOut",
+        scrollTo: { y: target, offsetY: 50, autoKill: true },
+      });
+    }
+  };
+  const scrollToExp = () => {
+    const target = document.querySelector<HTMLElement>("#experience");
+    if (target) {
+      gsap.to(window, {
+        duration: 1,
+        ease: "power.inOut",
+        scrollTo: { y: target, offsetY: 50, autoKill: true },
+      });
+    }
+  };
+  const scrollToContact = () => {
+    const target = document.querySelector<HTMLElement>("#contact");
+    if (target) {
+      gsap.to(window, {
+        duration: 1,
+        ease: "power.inOut",
+        scrollTo: { y: target, offsetY: 50, autoKill: true },
+      });
+    }
+  };
   return (
     <div className="flex items-center justify-center min-h-screen flex-col relative">
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -34,11 +68,9 @@ const Hero = () => {
           sequence={[
             "Frontend Developer",
             2000,
-            "Backend Developer",
-            2000,
-            "Full Stack Developer",
-            2000,
             "Software Engineer",
+            2000,
+            "Responsive Designer",
             2000,
           ]}
           wrapper="span"
@@ -48,28 +80,51 @@ const Hero = () => {
         />
       </div>
       <div className="flex flex-row gap-6 mt-16 text-gray-300">
-        <Github
-          size={28}
+        <Link
+          href="https://github.com/Bxvxrnchxxn"
+          target="_blank"
+          rel="noopener noreferrer"
           className="hover:scale-110 transition-transform duration-200 cursor-pointer hover:rotate-20 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]"
-        />
-        <Linkedin
-          size={28}
+        >
+          <Github size={28} />
+        </Link>
+
+        <Link
+          href="https://www.linkedin.com/in/bxvxrnchxxn"
+          target="_blank"
+          rel="noopener noreferrer"
           className="hover:scale-110 transition-transform duration-200 cursor-pointer hover:-rotate-20 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]"
-        />
-        <Mail
-          size={28}
+        >
+          <Linkedin size={28} />
+        </Link>
+
+        <Link
+          href="mailto:bovorn09871@gmail.com?subject=Hello&body=Hi"
+          target="_blank"
+          rel="noopener noreferrer"
           className="hover:scale-110 transition-transform duration-200 cursor-pointer hover:rotate-20 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]"
-        />
+        >
+          <Mail size={28} />
+        </Link>
       </div>
       <div className="space-x-4 flex flex-col md:flex-row gap-4 py-12">
-        <Button className="cursor-pointer rounded-full text-base py-6 px-6 font-bold bg-gradient-to-r from-purple-600 to-pink-600 hover:scale-110 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]">
-          View My Work
+        <Button
+          onClick={scrollToExp}
+          className="cursor-pointer rounded-full text-base py-6 px-6 font-bold bg-gradient-to-r from-purple-600 to-pink-600 hover:scale-110 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]"
+        >
+          View Experience
         </Button>
-        <Button className="cursor-pointer rounded-full text-base py-6 px-6 font-bold text-purple-400 border-2 border-purple-400 hover:bg-purple-400 hover:text-white transition-all duration-300 bg-transparent hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]  ">
+        <Button
+          onClick={scrollToContact}
+          className="cursor-pointer rounded-full text-base py-6 px-6 font-bold text-purple-400 border-2 border-purple-400 hover:bg-purple-400 hover:text-white transition-all duration-300 bg-transparent hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]  "
+        >
           Get In Touch
         </Button>
       </div>
-      <div className="absolute bottom-8 animate-float text-gray-300 hover:scale-130 transition-transform duration-200 cursor-pointer hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)] hover:text-purple-400">
+      <div
+        onClick={scrollToNext}
+        className="absolute bottom-8 animate-float text-gray-300 hover:scale-130 transition-transform duration-200 cursor-pointer hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)] hover:text-purple-400"
+      >
         <ChevronDown size={28} />
       </div>
     </div>

@@ -4,6 +4,7 @@ import { Calendar, MapPin } from "lucide-react";
 
 export const Experience = () => {
   type ExperienceItem = {
+    name: string;
     role: string;
     company: string;
     period: string;
@@ -14,41 +15,95 @@ export const Experience = () => {
 
   const experiences: ExperienceItem[] = [
     {
-      role: "Senior Frontend Developer",
-      company: "Tech Innovations Inc.",
-      period: "2022 – Present",
-      location: "San Francisco, CA",
+      name: "PortFolio",
+      role: "Frontend Developer",
+      company: "Learn by Myself",
+      period: "-",
+      location: "Bangkok, Thailand",
       highlights: [
-        "Led development of responsive web apps with React & TypeScript",
-        "Collaborated with UX/UI designers for pixel-perfect design",
-        "Optimized performance → 40 % faster load-time",
-        "Mentored junior developers and ran code-reviews",
+        "Developed websites for new frameworks and libraries",
+        "Learning responsive design for mobile and desktop in new frameworks",
+        "Change mindset and learn new things",
       ],
-      skills: ["React", "TypeScript", "Next.js", "GraphQL"],
+      skills: ["React", "Next", "Tailwind CSS", "Radix UI", "Github", "Typescript"],
     },
     {
-      role: "Full-Stack Engineer",
-      company: "CloudSync Solutions",
-      period: "2020 – 2022",
-      location: "Austin, TX",
+      name: "Software Engineer",
+      role: "Frontend Developer",
+      company: "Internet Thailand Co., Ltd.",
+      period: "March 2025 – Current",
+      location: "Bangkok, Thailand",
       highlights: [
-        "Built REST & GraphQL APIs with Node.js and PostgreSQL",
-        "Migrated legacy app to serverless on AWS Lambda",
-        "Implemented CI/CD pipeline (GitHub Actions + Docker)",
+        "Developed websites for multiple roles",
+        "Impllemented responsive design for mobile and desktop",
+        "Plan and manage work in a systematic way",
       ],
-      skills: ["Node.js", "PostgreSQL", "AWS", "Docker"],
+      skills: ["Vue", "Nuxt", "Vuetify", "Github", "Docker", "Postman", "Javascript"],
     },
     {
-      role: "UI/UX Designer & Frontend",
-      company: "PixelCraft Studio",
-      period: "2018 – 2020",
-      location: "Bangkok, TH",
+      name: "ProofEngThailand",
+      role: "Frontend Developer",
+      company: "Freelance",
+      period: "January 2025 – Febuary 2025",
+      location: "Nakhon Pathom, Thailand",
       highlights: [
-        "Designed wireframes & hi-fi prototypes in Figma",
-        "Converted designs to Vue / Tailwind components",
-        "Achieved 25 % higher user-engagement after redesign",
+        "Developed websites for users and administrators",
+        "Impllemented responsive design for mobile and desktop",
+        "Optimize code for performance and scalability and SEO",
       ],
-      skills: ["Figma", "Vue.js", "Tailwind CSS"],
+      skills: ["Vue", "Nuxt", "Vuetify", "Github", "Docker", "Postman", "Javascript"],
+    },
+    {
+      name: "ProofEng Solution",
+      role: "Frontend Developer",
+      company: "Freelance",
+      period: "October 2024 – December 2024",
+      location: "Nakhon Pathom, Thailand",
+      highlights: [
+        "Developed websites for users and administrators",
+        "Impllemented responsive design for mobile and desktop",
+        "Optimize code for performance and scalability and SEO",
+      ],
+      skills: ["Vue", "Nuxt", "Vuetify", "Github", "Docker", "Postman", "Javascript"],
+    },
+    {
+      name: "LASDB",
+      role: "Frontend Developer",
+      company: "Kasetsart University Kamphaeng Saen Campus",
+      period: "July 2024 – October 2024",
+      location: "Nakhon Pathom, Thailand",
+      highlights: [
+        "Developed websites for users and administrators",
+        "Impllemented responsive design for mobile and desktop",
+        "Plan and manage work in a systematic way",
+      ],
+      skills: ["Vue", "Nuxt", "Vuetify", "Github", "Docker", "Postman", "Javascript"],
+    },
+    {
+      name: "Internship",
+      role: "Full-Stack Developer",
+      company: "Internet Thailand Co., Ltd.",
+      period: "April 2024 – June 2024",
+      location: "Bangkok, Thailand",
+      highlights: [
+        "Completed a 2-month Internship as a Full-Stack Developer",
+        "Gaining experience in frontend development",
+        "Gaining experience in backend development",
+      ],
+      skills: ["Vue", "Nuxt", "Vuetify", "Node.js", "Express", "MySQL", "Javascript"],
+    },
+    {
+      name: "PR-TCAS 67",
+      role: "Infographic",
+      company: "Kasetsart University Kamphaeng Saen Campus",
+      period: "August 2023 – May 2024",
+      location: "Nakhon Pathom, Thailand",
+      highlights: [
+        "Designing the TCAS 67 infographic for the university",
+        "Develope skills in design , communication and teamwork",
+        "Change requirements to infographics",
+      ],
+      skills: ["Canva"],
     },
   ];
   return (
@@ -100,10 +155,13 @@ export const Experience = () => {
                   <div className="flex md:flex-row flex-col gap-4 md:w-250 md:justify-between">
                     <div>
                       <h3 className="md:text-2xl text-xl font-bold">
-                        {exp.role}
+                        {exp.name}
                       </h3>
                       <p className="md:text-xl text-lg font-semibold text-purple-400">
                         {exp.company}
+                      </p>
+                      <p className="md:text-lg text-base font-semibold text-gray-500">
+                        {exp.role}
                       </p>
                     </div>
                     <div className="flex flex-col">

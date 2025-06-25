@@ -16,8 +16,11 @@ import { Textarea } from "./ui/textarea";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, ContactForm } from "@/validation/contact.schema";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 export const Contact = () => {
+  const ReactSwal = withReactContent(Swal);
   const {
     register,
     handleSubmit,
@@ -30,6 +33,15 @@ export const Contact = () => {
 
   const onSubmit = (data: ContactForm) => {
     console.log("send =>", data);
+    ReactSwal.fire({
+      title: "Sorry!",
+      text: "This Functions is Not Available Yet!",
+      icon: "info",
+      color: "#f3f4f6",
+      background: "#45556c",
+      showConfirmButton: false,
+      timer: 3000,
+    });
     reset();
   };
   return (
@@ -123,7 +135,6 @@ export const Contact = () => {
                   className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
                 />
                 <Input
-                  type="email"
                   placeholder="Email"
                   aria-invalid={!!errors.email}
                   {...register("email")}
