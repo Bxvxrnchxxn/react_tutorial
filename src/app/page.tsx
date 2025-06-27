@@ -5,6 +5,7 @@ import About from "@/components/About";
 import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
 import { Contact } from "@/components/Contact";
+import { Skill } from "@/components/Skill";
 
 export default function Home() {
   return (
@@ -14,6 +15,9 @@ export default function Home() {
       </section>
       <section id="about" className="md:scroll-mt-15">
         <About />
+      </section>
+      <section id="skills" className="md:scroll-mt-15">
+        <Skill />
       </section>
       <section id="experience" className="md:scroll-mt-15">
         <Experience />

@@ -46,7 +46,7 @@ const About = () => {
     },
   ];
   return (
-    <div className="relative bg-slate-800 text-gray-100 flex flex-col items-center justify-center min-h-screen py-10">
+    <div className="relative bg-slate-700 text-gray-100 flex flex-col items-center justify-center min-h-screen py-10">
       {/* decoration */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <div className="absolute top-10 left-10 w-20 h-20 border border-purple-500/20 rounded-full animate-pulse-scale" />
@@ -145,7 +145,7 @@ const About = () => {
           {skills.map((skill, index) => (
             <div
               key={index}
-              className="group hover:-translate-y-3 hover:shadow-2xl rounded-lg bg-slate-900 w-full transition-all duration-300 hover:bg-slate-700 overflow-hidden"
+              className="group hover:-translate-y-3 hover:shadow-2xl rounded-lg bg-slate-800 w-full transition-all duration-300 hover:bg-slate-600 overflow-hidden"
             >
               <skill.icon
                 size={40}

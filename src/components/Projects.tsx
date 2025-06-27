@@ -153,7 +153,9 @@ export const Projects = () => {
         <div className="animate-shimmer w-40 h-1.5 bg-gradient-to-r from-purple-400 to-pink-400 mb-6 mx-auto"></div>
       </div>
       <div className="md:text-lg text-base text-gray-300">
-        Scroll to experience interactive GSAP-powered animations
+        A collection of front-end projects centered on academic systems and
+        management tools, highlighting my skills in design, usability, and
+        real-world problem solving.
       </div>
       <div className="grid grid-cols-1 gap-16 mt-12">
         {projects.map((project, index) => (
