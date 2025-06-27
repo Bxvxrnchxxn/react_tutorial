@@ -180,7 +180,7 @@ export const Skill = () => {
           </div>
           <div className="text-gray-300 light:text-gray-600">Projects</div>
         </div>
-        <div className="bg-slate-900/30 backdrop-blur-sm p-6 rounded-xl light:bg-white/50">
+        <div className="bg-slate-900/60 backdrop-blur-sm p-6 rounded-xl light:bg-white/50">
           <div className="text-3xl font-bold text-green-400 mb-2 light:text-green-600">
             ∞
           </div>
