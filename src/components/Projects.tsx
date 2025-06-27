@@ -85,7 +85,7 @@ export const Projects = () => {
         "Postman",
         "Javascript",
       ],
-      codeLink: "#",
+      codeLink: "",
       demoLink: "https://oos.flas.kps.ku.ac.th/lasdb/Home",
     },
     {
@@ -102,7 +102,7 @@ export const Projects = () => {
         "Postman",
         "Javascript",
       ],
-      codeLink: "#",
+      codeLink: "",
       demoLink: "https://www.proofengsolutions.com/Home",
     },
     {
@@ -119,7 +119,7 @@ export const Projects = () => {
         "Postman",
         "Javascript",
       ],
-      codeLink: "#",
+      codeLink: "",
       demoLink: "https://proofengthailand.com/home",
     },
     {
@@ -137,7 +137,7 @@ export const Projects = () => {
         "Postman",
         "Javascript",
       ],
-      codeLink: "#",
+      codeLink: "",
       demoLink: "https://uat.thaijobjob.com/timestamp/",
     },
   ];
@@ -210,19 +210,34 @@ export const Projects = () => {
 
               <div className="flex flex-row gap-6">
                 <a
-                  href={project.codeLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="reveal-text-line flex items-center text-gray-300 hover:scale-110 transition-transform"
+                  href={project.codeLink || undefined}
+                  target={project.codeLink ? "_blank" : undefined}
+                  rel={project.codeLink ? "noopener noreferrer" : undefined}
+                  className={`reveal-text-line flex items-center ${
+                    project.codeLink
+                      ? "text-gray-300 hover:scale-110 cursor-pointer"
+                      : "text-gray-500 cursor-not-allowed"
+                  } transition-transform`}
+                  onClick={(e) => {
+                    if (!project.codeLink) e.preventDefault();
+                  }}
                 >
                   <Github size={18} className="mr-2" />
                   <span>Code</span>
                 </a>
+
                 <a
-                  href={project.demoLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="reveal-text-line flex items-center text-gray-300 hover:scale-110 transition-transform"
+                  href={project.demoLink || undefined}
+                  target={project.demoLink ? "_blank" : undefined}
+                  rel={project.demoLink ? "noopener noreferrer" : undefined}
+                  className={`reveal-text-line flex items-center ${
+                    project.demoLink
+                      ? "text-gray-300 hover:scale-110 cursor-pointer"
+                      : "text-gray-500 cursor-not-allowed"
+                  } transition-transform`}
+                  onClick={(e) => {
+                    if (!project.demoLink) e.preventDefault();
+                  }}
                 >
                   <ExternalLink size={18} className="mr-2" />
                   <span>Live Demo</span>
