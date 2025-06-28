@@ -138,7 +138,7 @@ export const Experience = () => {
           </span>
         </div>
         <div className="animate-shimmer w-40 h-1.5 bg-gradient-to-r from-purple-400 to-pink-400 mb-6 mx-auto inline"></div>
-        <div className="text-center text-gray-100 text-xl max-w-200 pt-6">
+        <div className="text-center text-gray-100 text-xl mx-8 max-w-200 pt-6">
           My professional journey and the experiences that shaped my career
         </div>
         <div className="flex flex-col items-center justify-center mt-16 gap-4">

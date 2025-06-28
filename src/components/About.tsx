@@ -99,7 +99,7 @@ const About = () => {
         crafting responsive, user-friendly.
       </div>
       <div className="flex flex-col md:flex-row gap-8 py-8">
-        <div className="flex flex-col gap-8 md:flex-1 px-30 self-end">
+        <div className="flex flex-col gap-8 md:flex-1 md:mx-30 mx-8 self-end">
           <p className="text-xl text-gray-300 max-w-250">
             I work daily with Vue.js, Nuxt.js and Vuetify and tools like Docker,
             GitHub and Postman. I thrive on clean code, performance tuning and

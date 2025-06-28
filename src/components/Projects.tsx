@@ -109,7 +109,7 @@ export const Projects = () => {
       id: 3,
       title: "ProofEngThailand",
       description: "Website English grammar checking and proofreading service.",
-      image: "/imgs/defaultImgs.jpg",
+      image: "/imgs/proofengthailand.png",
       technologies: [
         "Vue",
         "Nuxt",
@@ -126,7 +126,7 @@ export const Projects = () => {
       id: 4,
       title: "Clockin",
       description:
-        "Website for timestamp in/out work and manage human resource.",
+        "Website for checkin-out working and manage human resource.",
       image: "/imgs/timestamp.png",
       technologies: [
         "Vue",

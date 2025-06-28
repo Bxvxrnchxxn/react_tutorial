@@ -43,7 +43,6 @@ const Navigation = () => {
       });
     };
 
-    /* bind → ทุกลิงก์ที่มี data-scrollto */
     document
       .querySelectorAll("[data-scrollto]")
       .forEach((a) => a.addEventListener("click", handler));
@@ -121,13 +120,13 @@ const Navigation = () => {
       {/* mobile dropdown */}
       {(menuOpen || closing) && (
         <ul
-          className={`md:hidden mt-4 py-4 flex flex-col gap-4 absolute top-full left-0 right-0 w-full
+          className={`md:hidden py-4 flex flex-col gap-4 absolute top-full left-0 right-0 w-full
          ${
            scrolled
              ? "bg-slate-900"
              : "bg-gradient-to-r from-slate-900 to-purple-900"
          }
-         ${menuOpen ? "animate-slide-up" : "animate-fade-out-left"}`}
+         ${menuOpen ? "animate-slide-up" : "animate-fade-out"}`}
         >
           {pageItems.map((it, i) => (
             <li

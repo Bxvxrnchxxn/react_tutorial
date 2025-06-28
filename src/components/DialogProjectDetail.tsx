@@ -29,36 +29,73 @@ export function DialogProjectDetail({ projectId, children }: Props) {
   const projects: Project[] = [
     {
       id: 1,
-      title: "E-Commerce Platform",
+      title: "LASDB",
       description:
-        "A full-stack e-commerce solution with React, Node.js, and Stripe integration.",
-      image:
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      codeLink: "#",
-      demoLink: "#",
+        "Website compregensive academic management platform covering books, article, jounals, projects, patents, research and awards.",
+      image: "/imgs/lasdb.png",
+      technologies: [
+        "Vue",
+        "Nuxt",
+        "Vuetify",
+        "Github",
+        "Docker",
+        "Postman",
+        "Javascript",
+      ],
+      codeLink: "",
+      demoLink: "https://oos.flas.kps.ku.ac.th/lasdb/Home",
     },
     {
       id: 2,
-      title: "Task Management App",
-      description:
-        "A collaborative task management application with real-time updates and team features.",
-      image:
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
-      technologies: ["React", "Firebase", "Tailwind CSS"],
-      codeLink: "#",
-      demoLink: "#",
+      title: "ProofEng Solution",
+      description: "Website English grammar checking and proofreading service.",
+      image: "/imgs/proofeng.png",
+      technologies: [
+        "Vue",
+        "Nuxt",
+        "Vuetify",
+        "Github",
+        "Docker",
+        "Postman",
+        "Javascript",
+      ],
+      codeLink: "",
+      demoLink: "https://www.proofengsolutions.com/Home",
     },
     {
       id: 3,
-      title: "Weather Dashboard",
+      title: "ProofEngThailand",
+      description: "Website English grammar checking and proofreading service.",
+      image: "/imgs/proofengthailand.png",
+      technologies: [
+        "Vue",
+        "Nuxt",
+        "Vuetify",
+        "Github",
+        "Docker",
+        "Postman",
+        "Javascript",
+      ],
+      codeLink: "",
+      demoLink: "https://proofengthailand.com/home",
+    },
+    {
+      id: 4,
+      title: "Clockin",
       description:
-        "A beautiful weather application with location-based forecasts and interactive charts.",
-      image:
-        "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=600&h=400&fit=crop",
-      technologies: ["React", "Chart.js", "Weather API"],
-      codeLink: "#",
-      demoLink: "#",
+        "Website for timestamp in/out work and manage human resource.",
+      image: "/imgs/timestamp.png",
+      technologies: [
+        "Vue",
+        "Nuxt",
+        "Vuetify",
+        "Github",
+        "Docker",
+        "Postman",
+        "Javascript",
+      ],
+      codeLink: "",
+      demoLink: "https://uat.thaijobjob.com/timestamp/",
     },
   ];
   const project = projects.find((p) => p.id === projectId);
@@ -98,16 +135,18 @@ export function DialogProjectDetail({ projectId, children }: Props) {
             ))}
           </div>
           <div className="flex flex-row gap-2">
-            <a
-              href={project.codeLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="min-w-20 min-h-12 flex justify-center gap-2 items-center px-4 py-1 bg-slate-700  md:text-lg text-base text-white 
+            {project.codeLink && (
+              <a
+                href={project.codeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="min-w-20 min-h-12 flex justify-center gap-2 items-center px-4 py-1 bg-slate-700  md:text-lg text-base text-white 
               rounded-full hover:bg-slate-700 transition-all duration-300 glow-on-hover"
-            >
-              <Github className="w-5 h-5"></Github>
-              View Code
-            </a>
+              >
+                <Github className="w-5 h-5"></Github>
+                View Code
+              </a>
+            )}
             <a
               href={project.demoLink}
               target="_blank"
