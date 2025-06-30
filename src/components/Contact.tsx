@@ -17,9 +17,11 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, ContactForm } from "@/validation/contact.schema";
 import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 import withReactContent from "sweetalert2-react-content";
 
 export const Contact = () => {
+  const { t } = useTranslation();
   const ReactSwal = withReactContent(Swal);
   const {
     register,
@@ -27,7 +29,7 @@ export const Contact = () => {
     reset,
     formState: { errors, touchedFields },
   } = useForm<ContactForm>({
-    resolver: zodResolver(contactSchema),
+    resolver: zodResolver(contactSchema(t)),
     mode: "onBlur",
   });
 
@@ -63,13 +65,12 @@ export const Contact = () => {
       </div>
       <div className="animate-blink flex flex-col mb-4">
         <div className="md:text-5xl text-4xl font-bold text-gray-100 mb-4">
-          Get In Touch
+          {t("contact.title")}
         </div>
         <div className="animate-shimmer w-40 h-1.5 bg-gradient-to-r from-purple-400 to-pink-400 mb-6 mx-auto inline"></div>
       </div>
       <div className="align-center text-gray-100 w-full px-12 md:text-lg text-base text-center pb-8">
-        Have a project in mind? Let&apos;s discuss how we can work together to
-        bring your ideas to life.
+        {t("contact.subtitle")}
       </div>
       <div className="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0 md:gap-[20vw] gap-6 items-start justify-start mt-12">
         <div className="w-full md:w-1/2 flex flex-col items-start justify-center gap-10">
@@ -78,7 +79,9 @@ export const Contact = () => {
               <Mail size={24} className="text-white" />
             </div>
             <div className="flex flex-col gap-2">
-              <div className="text-gray-100 font-semibold">Email</div>
+              <div className="text-gray-100 font-semibold">
+                {t("contact.email")}
+              </div>
               <div className="text-gray-300 font">bovorn09871@gmail.com</div>
             </div>
           </div>
@@ -87,7 +90,9 @@ export const Contact = () => {
               <Phone size={24} className="text-white" />
             </div>
             <div className="flex flex-col gap-2">
-              <div className="text-gray-100 font-semibold">Phone</div>
+              <div className="text-gray-100 font-semibold">
+                {t("contact.phone")}
+              </div>
               <div className="text-gray-300 font">+66 983799686</div>
             </div>
           </div>
@@ -96,8 +101,12 @@ export const Contact = () => {
               <MapPin size={24} className="text-white" />
             </div>
             <div className="flex flex-col gap-2">
-              <div className="text-gray-100 font-semibold">Location</div>
-              <div className="text-gray-300 font">Bangkok, Thailand</div>
+              <div className="text-gray-100 font-semibold">
+                {t("contact.location.locale")}
+              </div>
+              <div className="text-gray-300 font">
+                {t("contact.location.address")}
+              </div>
             </div>
           </div>
         </div>
@@ -111,7 +120,7 @@ export const Contact = () => {
                   className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
                 />
                 <Input
-                  placeholder="Name"
+                  placeholder={t("contact.form.name")}
                   aria-invalid={!!errors.name}
                   {...register("name")}
                   className={cn(
@@ -135,11 +144,11 @@ export const Contact = () => {
                   className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
                 />
                 <Input
-                  placeholder="Email"
+                  placeholder={t("contact.form.email")}
                   aria-invalid={!!errors.email}
                   {...register("email")}
                   className={cn(
-                    "pl-10 focus-visible:border-purple-400 text-gray-100", // ← เพิ่มตรงนี้
+                    "pl-10 focus-visible:border-purple-400 text-gray-100",
                     errors.email && "border-red-500 focus:border-red-500"
                   )}
                 />
@@ -156,15 +165,15 @@ export const Contact = () => {
               <div className="relative group-hover:scale-105 transition-all duration-300 hover:shadow-purple-600/60 hover:shadow-xl">
                 <MessageCircle
                   size={16}
-                  className="absolute left-3 top-5 -translate-y-1/2 text-gray-400" // ← เพิ่มตรงนี้
+                  className="absolute left-3 top-5 -translate-y-1/2 text-gray-100"
                 />
                 <Textarea
                   rows={4}
-                  placeholder="Message"
+                  placeholder={t("contact.form.message")}
                   aria-invalid={!!errors.message}
                   {...register("message")}
                   className={cn(
-                    "resize-none pl-10 focus-visible:border-purple-400  text-gray-100", // ← เพิ่มตรงนี้
+                    "resize-none pl-10 focus-visible:border-purple-400  text-gray-100",
                     errors.message && "border-red-500 focus:border-red-500"
                   )}
                 />
@@ -182,7 +191,8 @@ export const Contact = () => {
               className="group w-full bg-gradient-to-r from-purple-600 to-pink-600 
               hover:scale-105 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]"
             >
-              <Send size={18} className="mr-2 group-active:animate-send" /> Send
+              <Send size={18} className="mr-2 group-active:animate-send" />{" "}
+              {t("contact.form.submit")}
             </Button>
           </form>
         </div>

@@ -127,7 +127,6 @@
 }
 
 body {
-  font-family: "IBM Plex Sans Thai", sans-serif;
   overflow-x: hidden;
 }
 
@@ -418,4 +417,9 @@ body {
 .glow-on-hover:hover {
   box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
   transform: translateY(-2px);
+}
+input::placeholder,
+textarea::placeholder {
+  color: oklch(96.7% 0.003 264.542);
+  opacity: 1;
 }

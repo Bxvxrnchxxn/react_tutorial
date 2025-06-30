@@ -23,8 +23,10 @@ import {
 } from "react-icons/ri";
 import { BiLogoTypescript } from "react-icons/bi";
 import { VscVscode } from "react-icons/vsc";
+import { useTranslation } from "react-i18next";
 
 export const Skill = () => {
+  const { t } = useTranslation();
   const getLevelColor = (level: number) => {
     switch (level) {
       case 1:
@@ -67,14 +69,39 @@ export const Skill = () => {
   };
   const skillCategories = [
     {
-      title: "Frontend",
+      title: "Frameworks & Libraries",
       skills: [
         { name: "React", icon: <FaReact />, level: 1, color: "text-blue-500" },
-        { name: "Next.js", icon: <SiNextdotjs />, level: 1, color: "text-zinc-950" },
-        { name: "Vue.js", icon: <FaVuejs />, level: 3, color: "text-green-700" },
-        { name: "Nuxt.js", icon: <SiNuxtdotjs />, level: 3, color: "text-green-700" },
-        { name: "Tailwind CSS", icon: <RiTailwindCssFill />, level: 1, color: "text-cyan-400" },
-        { name: "Vuetify", icon: <SiVuetify />, level: 4, color: "text-sky-400" },
+        {
+          name: "Next.js",
+          icon: <SiNextdotjs />,
+          level: 1,
+          color: "text-zinc-950",
+        },
+        {
+          name: "Vue.js",
+          icon: <FaVuejs />,
+          level: 3,
+          color: "text-green-700",
+        },
+        {
+          name: "Nuxt.js",
+          icon: <SiNuxtdotjs />,
+          level: 3,
+          color: "text-green-700",
+        },
+        {
+          name: "Tailwind CSS",
+          icon: <RiTailwindCssFill />,
+          level: 1,
+          color: "text-cyan-400",
+        },
+        {
+          name: "Vuetify",
+          icon: <SiVuetify />,
+          level: 4,
+          color: "text-sky-400",
+        },
       ],
     },
     {
@@ -82,25 +109,65 @@ export const Skill = () => {
       skills: [
         { name: "HTML", icon: <FaHtml5 />, level: 3, color: "text-orange-600" },
         { name: "CSS", icon: <IoLogoCss3 />, level: 3, color: "text-blue-600" },
-        { name: "JavaScript", icon: <RiJavascriptFill />, level: 2, color: "text-amber-300" },
-        { name: "TypeScript", icon: <BiLogoTypescript />, level: 1, color: "text-blue-500" },
+        {
+          name: "JavaScript",
+          icon: <RiJavascriptFill />,
+          level: 2,
+          color: "text-amber-300",
+        },
+        {
+          name: "TypeScript",
+          icon: <BiLogoTypescript />,
+          level: 1,
+          color: "text-blue-500",
+        },
         { name: "Dart", icon: <SiDart />, level: 1, color: "text-sky-400" },
       ],
     },
     {
       title: "Mobile & Design",
       skills: [
-        { name: "Flutter", icon: <RiFlutterFill />, level: 1, color: "text-sky-400" },
-        { name: "Figma", icon: <FaFigma />, level: 1, color: "text-orange-500" },
+        {
+          name: "Flutter",
+          icon: <RiFlutterFill />,
+          level: 1,
+          color: "text-sky-400",
+        },
+        {
+          name: "Figma",
+          icon: <FaFigma />,
+          level: 1,
+          color: "text-orange-500",
+        },
       ],
     },
     {
-      title: "Tools & DevOps",
+      title: "Tools",
       skills: [
-        { name: "GitHub", icon: <FaGithub />, level: 2, color: "text-zinc-950" },
-        { name: "Docker", icon: <FaDocker />, level: 2, color: "text-blue-500" },
-        { name: "VS Code", icon: <VscVscode />, level: 4, color: "text-sky-600" },
-        { name: "Postman", icon: <SiPostman />, level: 3, color: "text-orange-500" },
+        {
+          name: "GitHub",
+          icon: <FaGithub />,
+          level: 2,
+          color: "text-zinc-950",
+        },
+        {
+          name: "Docker",
+          icon: <FaDocker />,
+          level: 2,
+          color: "text-blue-500",
+        },
+        {
+          name: "VS Code",
+          icon: <VscVscode />,
+          level: 4,
+          color: "text-sky-600",
+        },
+        {
+          name: "Postman",
+          icon: <SiPostman />,
+          level: 3,
+          color: "text-orange-500",
+        },
       ],
     },
   ];
@@ -111,11 +178,11 @@ export const Skill = () => {
         <div className="absolute bottom-20 right-20 w-32 h-32 border border-pink-500/10 rounded-full animate-float light:border-pink-300/20"></div>
       </div>
       <div className="md:text-5xl text-3xl font-bold mb-6 text-gray-100 animate-blink align-center">
-        My Skills & Technologies
+        {t("skills.title")}
       </div>
       <div className="animate-shimmer w-40 h-1.5 bg-gradient-to-r from-purple-400 to-pink-400 mb-6 mx-auto"></div>
       <div className="md:text-lg text-base text-gray-300">
-        My technical expertise across various domains of software development
+        {t("skills.subtitle")}
       </div>
       <div className="grid-cols-1 md:grid-cols-4 gap-4 md:px-30 mt-10 w-full grid">
         {skillCategories.map((category) => (
@@ -132,7 +199,9 @@ export const Skill = () => {
                 <div key={skill.name} className="mb-6 mt-8 ">
                   <div className="flex items-center justify-between gap-2 text-gray-300 text-lg font-medium">
                     <div className="flex flex-row gap-2 items-center">
-                      <div className={`text-xl ${skill.color}`}>{skill.icon}</div>
+                      <div className={`text-xl ${skill.color}`}>
+                        {skill.icon}
+                      </div>
                       <div>{skill.name}</div>
                     </div>
 
@@ -161,35 +230,49 @@ export const Skill = () => {
         ))}
       </div>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-8 md:px-30 text-center w-full">
-        <div className="bg-slate-900/60 backdrop-blur-sm p-6 rounded-xl light:bg-white/50 glow-on-hover hover:scale-105
-        transition-all duration-300 hover:shadow-slate-900/60">
+        <div
+          className="bg-slate-900/60 backdrop-blur-sm p-6 rounded-xl light:bg-white/50 glow-on-hover hover:scale-105
+        transition-all duration-300 hover:shadow-slate-900/60"
+        >
           <div className="text-3xl font-bold text-purple-400 mb-2 light:text-purple-600">
             15+
           </div>
-          <div className="text-gray-300 light:text-gray-600">Technologies</div>
+          <div className="text-gray-300 light:text-gray-600">
+            {t("skills.tech")}
+          </div>
         </div>
-        <div className="bg-slate-900/60 backdrop-blur-sm p-6 rounded-xl light:bg-white/50 glow-on-hover hover:scale-105
-        transition-all duration-300 hover:shadow-slate-900/60">
+        <div
+          className="bg-slate-900/60 backdrop-blur-sm p-6 rounded-xl light:bg-white/50 glow-on-hover hover:scale-105
+        transition-all duration-300 hover:shadow-slate-900/60"
+        >
           <div className="text-3xl font-bold text-pink-400 mb-2 light:text-pink-600">
             0 - 1
           </div>
           <div className="text-gray-300 light:text-gray-600">
-            Years Experience
+            {t("skills.exp")}
           </div>
         </div>
-        <div className="bg-slate-900/60 backdrop-blur-sm p-6 rounded-xl light:bg-white/50 glow-on-hover hover:scale-105
-        transition-all duration-300 hover:shadow-slate-900/60">
+        <div
+          className="bg-slate-900/60 backdrop-blur-sm p-6 rounded-xl light:bg-white/50 glow-on-hover hover:scale-105
+        transition-all duration-300 hover:shadow-slate-900/60"
+        >
           <div className="text-3xl font-bold text-cyan-400 mb-2 light:text-cyan-600">
             4
           </div>
-          <div className="text-gray-300 light:text-gray-600">Projects</div>
+          <div className="text-gray-300 light:text-gray-600">
+            {t("skills.project")}
+          </div>
         </div>
-        <div className="bg-slate-900/60 backdrop-blur-sm p-6 rounded-xl light:bg-white/50 glow-on-hover hover:scale-105
-        transition-all duration-300 hover:shadow-slate-900/60">
+        <div
+          className="bg-slate-900/60 backdrop-blur-sm p-6 rounded-xl light:bg-white/50 glow-on-hover hover:scale-105
+        transition-all duration-300 hover:shadow-slate-900/60"
+        >
           <div className="text-3xl font-bold text-green-400 mb-2 light:text-green-600">
             ∞
           </div>
-          <div className="text-gray-300 light:text-gray-600">Learning</div>
+          <div className="text-gray-300 light:text-gray-600">
+            {t("skills.learn")}
+          </div>
         </div>
       </div>
     </div>

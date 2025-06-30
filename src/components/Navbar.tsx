@@ -1,25 +1,39 @@
 "use client";
 import Link from "next/link";
-import { Sparkles, Menu, X } from "lucide-react";
+import { Sparkles, Menu, X, Globe } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useMemo } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { useTranslation } from "react-i18next";
 gsap.registerPlugin(ScrollToPlugin);
-
-const pageItems = [
-  { href: "home", label: "Home" },
-  { href: "about", label: "About" },
-  { href: "skills", label: "Skills" },
-  { href: "experience", label: "Experience" },
-  { href: "projects", label: "Projects" },
-  { href: "contact", label: "Contact" },
-];
-const OFFSET = 50;
 
 const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [closing, setClosing] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [language, setLanguage] = useState("en");
+  const OFFSET = 50;
+  const { t, i18n, ready } = useTranslation();
+
+  const pageItems = useMemo(
+    () => [
+      { href: "home", label: t("navbar.home") },
+      { href: "about", label: t("navbar.about") },
+      { href: "skills", label: t("navbar.skills") },
+      { href: "experience", label: t("navbar.experience") },
+      { href: "projects", label: t("navbar.projects") },
+      { href: "contact", label: t("navbar.contact") },
+    ],
+    [t]
+  );
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     onScroll();
@@ -73,6 +87,12 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const changeLanguage = (lang: string) => {
+    setLanguage(lang);
+    i18n.changeLanguage(lang);
+  };
+  if (!ready) return null;
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 w-full z-50 px-6 py-4 transition-colors duration-300
@@ -89,12 +109,12 @@ const Navigation = () => {
             className="text-3xl font-semibold bg-gradient-to-t
             from-purple-400 to-pink-400 bg-clip-text text-transparent"
           >
-            Portfolio
+            {t("navbar.title")}
           </span>
         </a>
 
         {/* desktop menu */}
-        <ul className="hidden md:flex gap-10">
+        <ul className="hidden md:flex gap-10 items-baseline">
           {pageItems.map((it) => (
             <li
               key={it.href}
@@ -110,6 +130,33 @@ const Navigation = () => {
               ></span>
             </li>
           ))}
+          <li>
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className="flex gap-1 items-baseline space-x-1 text-gray-300 hover:text-purple-400 
+              transition-all duration-300 hover:scale-110 cursor-pointer"
+              >
+                <Globe size={20} className="self-center" />
+                <div className="text-sm font-medium">
+                  {language.toUpperCase()}
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-slate-800 border border-slate-600 text-gray-100 cursor-pointer">
+                <DropdownMenuItem
+                  onClick={() => changeLanguage("en")}
+                  className="focus:bg-slate-700 cursor-pointer focus:text-gray-100"
+                >
+                  English
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => changeLanguage("th")}
+                  className="focus:bg-slate-700 cursor-pointer focus:text-gray-100"
+                >
+                  ไทย
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </li>
         </ul>
 
         <button onClick={toggleMenu} className="md:hidden text-gray-100">

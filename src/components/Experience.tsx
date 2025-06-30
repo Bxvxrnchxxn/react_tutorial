@@ -1,8 +1,11 @@
+"use client"
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const Experience = () => {
+  const { t } = useTranslation();
   type ExperienceItem = {
     name: string;
     role: string;
@@ -15,95 +18,142 @@ export const Experience = () => {
 
   const experiences: ExperienceItem[] = [
     {
-      name: "PortFolio",
-      role: "Frontend Developer",
-      company: "Learn by Myself",
-      period: "-",
-      location: "Bangkok, Thailand",
+      name: t("experience.exp1.name"),
+      role: t("experience.exp1.role"),
+      company: t("experience.exp1.company"),
+      period: t("experience.exp1.period"),
+      location: t("experience.exp1.location"),
       highlights: [
-        "Developed websites for new frameworks and libraries",
-        "Learning responsive design for mobile and desktop in new frameworks",
-        "Change mindset and learn new things",
+        t("experience.exp1.highlights.hl1"),
+        t("experience.exp1.highlights.hl2"),
+        t("experience.exp1.highlights.hl3"),
       ],
-      skills: ["React", "Next", "Tailwind CSS", "Radix UI", "Github", "Typescript"],
+      skills: [
+        t("experience.exp1.skills.s1"),
+        t("experience.exp1.skills.s2"),
+        t("experience.exp1.skills.s3"),
+        t("experience.exp1.skills.s4"),
+        t("experience.exp1.skills.s5"),
+        t("experience.exp1.skills.s6"),
+      ],
     },
     {
-      name: "Software Engineer",
-      role: "Frontend Developer",
-      company: "Internet Thailand Co., Ltd.",
-      period: "March 2025 – Current",
-      location: "Bangkok, Thailand",
+      name: t("experience.exp2.name"),
+      role: t("experience.exp2.role"),
+      company: t("experience.exp2.company"),
+      period: t("experience.exp2.period"),
+      location: t("experience.exp2.location"),
       highlights: [
-        "Developed websites for multiple roles",
-        "Impllemented responsive design for mobile and desktop",
-        "Plan and manage work in a systematic way",
+        t("experience.exp2.highlights.hl1"),
+        t("experience.exp2.highlights.hl2"),
+        t("experience.exp2.highlights.hl3"),
       ],
-      skills: ["Vue", "Nuxt", "Vuetify", "Github", "Docker", "Postman", "Javascript"],
+      skills: [
+        t("experience.exp2.skills.s1"),
+        t("experience.exp2.skills.s2"),
+        t("experience.exp2.skills.s3"),
+        t("experience.exp2.skills.s4"),
+        t("experience.exp2.skills.s5"),
+        t("experience.exp2.skills.s6"),
+        t("experience.exp2.skills.s7"),
+      ],
     },
     {
-      name: "ProofEngThailand",
-      role: "Frontend Developer",
-      company: "Freelance",
-      period: "January 2025 – Febuary 2025",
-      location: "Nakhon Pathom, Thailand",
+      name: t("experience.exp3.name"),
+      role: t("experience.exp3.role"),
+      company: t("experience.exp3.company"),
+      period: t("experience.exp3.period"),
+      location: t("experience.exp3.location"),
       highlights: [
-        "Developed websites for users and administrators",
-        "Impllemented responsive design for mobile and desktop",
-        "Optimize code for performance and scalability and SEO",
+        t("experience.exp3.highlights.hl1"),
+        t("experience.exp3.highlights.hl2"),
+        t("experience.exp3.highlights.hl3"),
       ],
-      skills: ["Vue", "Nuxt", "Vuetify", "Github", "Docker", "Postman", "Javascript"],
+      skills: [
+        t("experience.exp3.skills.s1"),
+        t("experience.exp3.skills.s2"),
+        t("experience.exp3.skills.s3"),
+        t("experience.exp3.skills.s4"),
+        t("experience.exp3.skills.s5"),
+        t("experience.exp3.skills.s6"),
+        t("experience.exp3.skills.s7"),
+      ],
     },
     {
-      name: "ProofEng Solution",
-      role: "Frontend Developer",
-      company: "Freelance",
-      period: "October 2024 – December 2024",
-      location: "Nakhon Pathom, Thailand",
+      name: t("experience.exp4.name"),
+      role: t("experience.exp4.role"),
+      company: t("experience.exp4.company"),
+      period: t("experience.exp4.period"),
+      location: t("experience.exp4.location"),
       highlights: [
-        "Developed websites for users and administrators",
-        "Impllemented responsive design for mobile and desktop",
-        "Optimize code for performance and scalability and SEO",
+        t("experience.exp4.highlights.hl1"),
+        t("experience.exp4.highlights.hl2"),
+        t("experience.exp4.highlights.hl3"),
       ],
-      skills: ["Vue", "Nuxt", "Vuetify", "Github", "Docker", "Postman", "Javascript"],
+      skills: [
+        t("experience.exp4.skills.s1"),
+        t("experience.exp4.skills.s2"),
+        t("experience.exp4.skills.s3"),
+        t("experience.exp4.skills.s4"),
+        t("experience.exp4.skills.s5"),
+        t("experience.exp4.skills.s6"),
+        t("experience.exp4.skills.s7"),
+      ],
     },
     {
-      name: "LASDB",
-      role: "Frontend Developer",
-      company: "Kasetsart University Kamphaeng Saen Campus",
-      period: "July 2024 – October 2024",
-      location: "Nakhon Pathom, Thailand",
+      name: t("experience.exp5.name"),
+      role: t("experience.exp5.role"),
+      company: t("experience.exp5.company"),
+      period: t("experience.exp5.period"),
+      location: t("experience.exp5.location"),
       highlights: [
-        "Developed websites for users and administrators",
-        "Impllemented responsive design for mobile and desktop",
-        "Plan and manage work in a systematic way",
+        t("experience.exp5.highlights.hl1"),
+        t("experience.exp5.highlights.hl2"),
+        t("experience.exp5.highlights.hl3"),
       ],
-      skills: ["Vue", "Nuxt", "Vuetify", "Github", "Docker", "Postman", "Javascript"],
+      skills: [
+        t("experience.exp5.skills.s1"),
+        t("experience.exp5.skills.s2"),
+        t("experience.exp5.skills.s3"),
+        t("experience.exp5.skills.s4"),
+        t("experience.exp5.skills.s5"),
+        t("experience.exp5.skills.s6"),
+        t("experience.exp5.skills.s7"),
+      ],
     },
     {
-      name: "Internship",
-      role: "Full-Stack Developer",
-      company: "Internet Thailand Co., Ltd.",
-      period: "April 2024 – June 2024",
-      location: "Bangkok, Thailand",
+      name: t("experience.exp6.name"),
+      role: t("experience.exp6.role"),
+      company: t("experience.exp6.company"),
+      period: t("experience.exp6.period"),
+      location: t("experience.exp6.location"),
       highlights: [
-        "Completed a 2-month Internship as a Full-Stack Developer",
-        "Gaining experience in frontend development",
-        "Gaining experience in backend development",
+        t("experience.exp6.highlights.hl1"),
+        t("experience.exp6.highlights.hl2"),
+        t("experience.exp6.highlights.hl3"),
       ],
-      skills: ["Vue", "Nuxt", "Vuetify", "Node.js", "Express", "MySQL", "Javascript"],
+      skills: [
+        t("experience.exp6.skills.s1"),
+        t("experience.exp6.skills.s2"),
+        t("experience.exp6.skills.s3"),
+        t("experience.exp6.skills.s4"),
+        t("experience.exp6.skills.s5"),
+        t("experience.exp6.skills.s6"),
+        t("experience.exp6.skills.s7"),
+      ],
     },
     {
-      name: "PR-TCAS 67",
-      role: "Infographic",
-      company: "Kasetsart University Kamphaeng Saen Campus",
-      period: "August 2023 – May 2024",
-      location: "Nakhon Pathom, Thailand",
+      name: t("experience.exp7.name"),
+      role: t("experience.exp7.role"),
+      company: t("experience.exp7.company"),
+      period: t("experience.exp7.period"),
+      location: t("experience.exp7.location"),
       highlights: [
-        "Designing the TCAS 67 infographic for the university",
-        "Develope skills in design , communication and teamwork",
-        "Change requirements to infographics",
+        t("experience.exp7.highlights.hl1"),
+        t("experience.exp7.highlights.hl2"),
+        t("experience.exp7.highlights.hl3"),
       ],
-      skills: ["Canva"],
+      skills: [t("experience.exp7.skills.s1")],
     },
   ];
   return (
@@ -132,18 +182,18 @@ export const Experience = () => {
       </div>
       <div className="w-full flex flex-col items-center">
         <div className="md:text-5xl text-4xl font-bold mb-4 text-gray-100 text-center">
-          Work{" "}
+          {t("experience.title1")}{" "}
           <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Experience
+            {t("experience.title2")}
           </span>
         </div>
         <div className="animate-shimmer w-40 h-1.5 bg-gradient-to-r from-purple-400 to-pink-400 mb-6 mx-auto inline"></div>
         <div className="text-center text-gray-100 text-xl mx-8 max-w-200 pt-6">
-          My professional journey and the experiences that shaped my career
+          {t("experience.subtitle")}
         </div>
         <div className="flex flex-col items-center justify-center mt-16 gap-4">
           {experiences.map((exp, index) => (
-            <div key={exp.role} className="flex-row flex">
+            <div key={`${exp.name}-exp-${index}`} className="flex-row flex">
               <div className="flex flex-col justify-center items-center mr-6">
                 <div className="w-2 h-2 rounded-full bg-pink-300"></div>
                 {index !== experiences.length + 1 && (
@@ -176,9 +226,9 @@ export const Experience = () => {
                     </div>
                   </div>
                   <div className="flex flex-col gap-4 pt-6">
-                    {exp.highlights.map((hl) => (
+                    {exp.highlights.map((hl, i) => (
                       <div
-                        key={hl}
+                        key={`${hl}-${i}`}
                         className="flex flex-row gap-4 items-baseline"
                       >
                         <div className="flex-shrink-0 w-2 h-2 rounded-full bg-purple-400 mt-1"></div>
@@ -189,9 +239,9 @@ export const Experience = () => {
                     ))}
                   </div>
                   <div className="flex flex-wrap gap-3 mt-5 mb-2">
-                    {exp.skills.map((skill) => (
+                    {exp.skills.map((skill, index) => (
                       <Button
-                        key={skill}
+                        key={`${skill}-${index}`}
                         className="px-3 py-1 rounded-full bg-gradient-to-r from-purple-600/20 to-pink-600/20 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)] transition-all duration-300 hover:-translate-y-1"
                       >
                         {skill}
