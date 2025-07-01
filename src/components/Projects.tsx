@@ -125,8 +125,7 @@ export const Projects = () => {
     {
       id: 4,
       title: "Clockin",
-      description:
-        "Website for checkin-out working and manage human resource.",
+      description: "Website for checkin-out working and manage human resource.",
       image: "/imgs/timestamp.png",
       technologies: [
         "Vue",
@@ -174,7 +173,7 @@ export const Projects = () => {
               />
               <div
                 className="absolute inset-0 bg-gradient-to-b from-purple-500/0 via-purple-500/20 to-purple-500/70 
-               opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               />
               <DialogProjectDetail projectId={project.id}>
                 <div

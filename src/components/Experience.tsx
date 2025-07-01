@@ -25,7 +25,14 @@ export const Experience = () => {
         "Learning responsive design for mobile and desktop in new frameworks",
         "Change mindset and learn new things",
       ],
-      skills: ["React", "Next", "Tailwind CSS", "Radix UI", "Github", "Typescript"],
+      skills: [
+        "React",
+        "Next",
+        "Tailwind CSS",
+        "Radix UI",
+        "Github",
+        "Typescript",
+      ],
     },
     {
       name: "Software Engineer",
@@ -38,7 +45,15 @@ export const Experience = () => {
         "Impllemented responsive design for mobile and desktop",
         "Plan and manage work in a systematic way",
       ],
-      skills: ["Vue", "Nuxt", "Vuetify", "Github", "Docker", "Postman", "Javascript"],
+      skills: [
+        "Vue",
+        "Nuxt",
+        "Vuetify",
+        "Github",
+        "Docker",
+        "Postman",
+        "Javascript",
+      ],
     },
     {
       name: "ProofEngThailand",
@@ -51,7 +66,15 @@ export const Experience = () => {
         "Impllemented responsive design for mobile and desktop",
         "Optimize code for performance and scalability and SEO",
       ],
-      skills: ["Vue", "Nuxt", "Vuetify", "Github", "Docker", "Postman", "Javascript"],
+      skills: [
+        "Vue",
+        "Nuxt",
+        "Vuetify",
+        "Github",
+        "Docker",
+        "Postman",
+        "Javascript",
+      ],
     },
     {
       name: "ProofEng Solution",
@@ -64,7 +87,15 @@ export const Experience = () => {
         "Impllemented responsive design for mobile and desktop",
         "Optimize code for performance and scalability and SEO",
       ],
-      skills: ["Vue", "Nuxt", "Vuetify", "Github", "Docker", "Postman", "Javascript"],
+      skills: [
+        "Vue",
+        "Nuxt",
+        "Vuetify",
+        "Github",
+        "Docker",
+        "Postman",
+        "Javascript",
+      ],
     },
     {
       name: "LASDB",
@@ -77,7 +108,15 @@ export const Experience = () => {
         "Impllemented responsive design for mobile and desktop",
         "Plan and manage work in a systematic way",
       ],
-      skills: ["Vue", "Nuxt", "Vuetify", "Github", "Docker", "Postman", "Javascript"],
+      skills: [
+        "Vue",
+        "Nuxt",
+        "Vuetify",
+        "Github",
+        "Docker",
+        "Postman",
+        "Javascript",
+      ],
     },
     {
       name: "Internship",
@@ -90,7 +129,15 @@ export const Experience = () => {
         "Gaining experience in frontend development",
         "Gaining experience in backend development",
       ],
-      skills: ["Vue", "Nuxt", "Vuetify", "Node.js", "Express", "MySQL", "Javascript"],
+      skills: [
+        "Vue",
+        "Nuxt",
+        "Vuetify",
+        "Node.js",
+        "Express",
+        "MySQL",
+        "Javascript",
+      ],
     },
     {
       name: "PR-TCAS 67",
@@ -143,7 +190,7 @@ export const Experience = () => {
         </div>
         <div className="flex flex-col items-center justify-center mt-16 gap-4">
           {experiences.map((exp, index) => (
-            <div key={exp.role} className="flex-row flex">
+            <div key={index} className="flex-row flex">
               <div className="flex flex-col justify-center items-center mr-6">
                 <div className="w-2 h-2 rounded-full bg-pink-300"></div>
                 {index !== experiences.length + 1 && (

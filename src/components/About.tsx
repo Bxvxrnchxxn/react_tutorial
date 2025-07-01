@@ -1,13 +1,27 @@
 "use client";
 import React from "react";
-import { Star, CodeXml, Code, Smartphone } from "lucide-react";
+import { Star, CodeXml, Code, Smartphone, ChevronDown } from "lucide-react";
 import BouncingWord from "@/components/BouncingWord";
 import { Button } from "@/components/ui/button";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 gsap.registerPlugin(ScrollToPlugin);
 
 const About = () => {
+  const downloadFile = (path: string) => {
+    const link = document.createElement("a");
+    link.href = path;
+    link.download = path.split("/").pop()!;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   const scrollToProject = () => {
     const target = document.querySelector<HTMLElement>("#projects");
     if (target) {
@@ -119,13 +133,35 @@ const About = () => {
             >
               View Projects
             </Button>
-            <Button
-              onClick={scrollToContact}
-              className="bg-pink-600  text-gray-100 rounded-full hover:bg-pink-600 transition transform 
-              duration-300 hover:-translate-y-2 hover:drop-shadow-[0_0_8px_rgba(244,114,182,1)] cursor-pointer"
-            >
-              Contact Me
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  onClick={scrollToContact}
+                  className="bg-pink-600  text-gray-100 rounded-full hover:bg-pink-600 transition transform 
+                      duration-300 hover:-translate-y-2 hover:drop-shadow-[0_0_8px_rgba(244,114,182,1)] cursor-pointer"
+                >
+                  Download CV
+                  <ChevronDown size={16} />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-slate-800 border border-slate-600">
+                <DropdownMenuItem
+                  onClick={() => downloadFile("/cv/bovorn_cv_th.pdf")}
+                  className="cursor-pointer text-gray-100 
+                focus:text-gray-100 focus:bg-slate-700 flex"
+                >
+                  <span>🇹🇭</span>
+                  <span>ไทย</span>
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => downloadFile("/cv/bovorn_cv_en.pdf")}
+                  className="cursor-pointer text-gray-100 focus:text-gray-100 focus:bg-slate-700 flex"
+                >
+                  <span>ᴇɴ</span>
+                  <span>English</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
         <div className="flex flex-col items-center justify-center md:flex-1">
