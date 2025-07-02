@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { Github, ExternalLink } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   projectId: number;
@@ -17,6 +18,7 @@ interface Props {
 }
 
 export function DialogProjectDetail({ projectId, children }: Props) {
+  const { t } = useTranslation();
   interface Project {
     id: number;
     title: string;
@@ -29,70 +31,68 @@ export function DialogProjectDetail({ projectId, children }: Props) {
   const projects: Project[] = [
     {
       id: 1,
-      title: "LASDB",
-      description:
-        "Website compregensive academic management platform covering books, article, jounals, projects, patents, research and awards.",
+      title: t("projects.projectsInfo.project1.title"),
+      description: t("projects.projectsInfo.project1.description"),
       image: "/imgs/lasdb.png",
       technologies: [
-        "Vue",
-        "Nuxt",
-        "Vuetify",
-        "Github",
-        "Docker",
-        "Postman",
-        "Javascript",
+        t("projects.projectsInfo.project1.tech.t1"),
+        t("projects.projectsInfo.project1.tech.t2"),
+        t("projects.projectsInfo.project1.tech.t3"),
+        t("projects.projectsInfo.project1.tech.t4"),
+        t("projects.projectsInfo.project1.tech.t5"),
+        t("projects.projectsInfo.project1.tech.t6"),
+        t("projects.projectsInfo.project1.tech.t7"),
       ],
       codeLink: "",
       demoLink: "https://oos.flas.kps.ku.ac.th/lasdb/Home",
     },
     {
       id: 2,
-      title: "ProofEng Solution",
-      description: "Website English grammar checking and proofreading service.",
+      title: t("projects.projectsInfo.project2.title"),
+      description: t("projects.projectsInfo.project2.description"),
       image: "/imgs/proofeng.png",
       technologies: [
-        "Vue",
-        "Nuxt",
-        "Vuetify",
-        "Github",
-        "Docker",
-        "Postman",
-        "Javascript",
+        t("projects.projectsInfo.project2.tech.t1"),
+        t("projects.projectsInfo.project2.tech.t2"),
+        t("projects.projectsInfo.project2.tech.t3"),
+        t("projects.projectsInfo.project2.tech.t4"),
+        t("projects.projectsInfo.project2.tech.t5"),
+        t("projects.projectsInfo.project2.tech.t6"),
+        t("projects.projectsInfo.project2.tech.t7"),
       ],
       codeLink: "",
       demoLink: "https://www.proofengsolutions.com/Home",
     },
     {
       id: 3,
-      title: "ProofEngThailand",
-      description: "Website English grammar checking and proofreading service.",
+      title: t("projects.projectsInfo.project3.title"),
+      description: t("projects.projectsInfo.project3.description"),
       image: "/imgs/proofengthailand.png",
       technologies: [
-        "Vue",
-        "Nuxt",
-        "Vuetify",
-        "Github",
-        "Docker",
-        "Postman",
-        "Javascript",
+        t("projects.projectsInfo.project3.tech.t1"),
+        t("projects.projectsInfo.project3.tech.t2"),
+        t("projects.projectsInfo.project3.tech.t3"),
+        t("projects.projectsInfo.project3.tech.t4"),
+        t("projects.projectsInfo.project3.tech.t5"),
+        t("projects.projectsInfo.project3.tech.t6"),
+        t("projects.projectsInfo.project3.tech.t7"),
       ],
       codeLink: "",
       demoLink: "https://proofengthailand.com/home",
     },
     {
       id: 4,
-      title: "Clockin",
-      description:
-        "Website for timestamp in/out work and manage human resource.",
+      title: t("projects.projectsInfo.project4.title"),
+      description: t("projects.projectsInfo.project4.description"),
       image: "/imgs/timestamp.png",
       technologies: [
-        "Vue",
-        "Nuxt",
-        "Vuetify",
-        "Github",
-        "Docker",
-        "Postman",
-        "Javascript",
+        t("projects.projectsInfo.project4.tech.t1"),
+        t("projects.projectsInfo.project4.tech.t2"),
+        t("projects.projectsInfo.project4.tech.t3"),
+        t("projects.projectsInfo.project4.tech.t4"),
+        t("projects.projectsInfo.project4.tech.t5"),
+        t("projects.projectsInfo.project4.tech.t6"),
+        t("projects.projectsInfo.project4.tech.t7"),
       ],
       codeLink: "",
       demoLink: "https://uat.thaijobjob.com/timestamp/",
@@ -161,7 +161,7 @@ export function DialogProjectDetail({ projectId, children }: Props) {
               rounded-full hover:bg-slate-700 transition-all duration-300 glow-on-hover"
               >
                 <Github className="w-5 h-5"></Github>
-                View Code
+                {t("projects.button1")}
               </a>
             )}
             <a
@@ -173,7 +173,7 @@ export function DialogProjectDetail({ projectId, children }: Props) {
               hover:from-purple-700 hover:to-pink-700"
             >
               <ExternalLink className="w-5 h-5"></ExternalLink>
-              Live Demo
+              {t("projects.button2")}
             </a>
           </div>
         </DialogDescription>

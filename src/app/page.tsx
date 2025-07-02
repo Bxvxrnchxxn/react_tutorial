@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import "./globals.css";
 import Hero from "@/components/Hero";
@@ -6,6 +7,7 @@ import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
 import { Contact } from "@/components/Contact";
 import { Skill } from "@/components/Skill";
+import "@/i18n";
 
 export default function Home() {
   return (

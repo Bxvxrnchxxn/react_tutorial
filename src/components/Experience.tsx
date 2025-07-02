@@ -1,8 +1,11 @@
+"use client"
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const Experience = () => {
+  const { t } = useTranslation();
   type ExperienceItem = {
     name: string;
     role: string;
@@ -159,14 +162,14 @@ export const Experience = () => {
       </div>
       <div className="w-full flex flex-col items-center">
         <div className="md:text-5xl text-4xl font-bold mb-4 text-gray-100 text-center">
-          Work{" "}
+          {t("experience.title1")}{" "}
           <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-            Experience
+            {t("experience.title2")}
           </span>
         </div>
         <div className="animate-shimmer w-40 h-1.5 bg-gradient-to-r from-purple-400 to-pink-400 mb-6 mx-auto inline"></div>
         <div className="text-center text-gray-100 text-xl mx-8 max-w-200 pt-6">
-          My professional journey and the experiences that shaped my career
+          {t("experience.subtitle")}
         </div>
         <div className="flex flex-col items-center justify-center mt-16 gap-4">
           {experiences.map((exp, index) => (
@@ -203,9 +206,9 @@ export const Experience = () => {
                     </div>
                   </div>
                   <div className="flex flex-col gap-4 pt-6">
-                    {exp.highlights.map((hl) => (
+                    {exp.highlights.map((hl, i) => (
                       <div
-                        key={hl}
+                        key={`${hl}-${i}`}
                         className="flex flex-row gap-4 items-baseline"
                       >
                         <div className="flex-shrink-0 w-2 h-2 rounded-full bg-purple-400 mt-1"></div>
@@ -216,9 +219,9 @@ export const Experience = () => {
                     ))}
                   </div>
                   <div className="flex flex-wrap gap-3 mt-5 mb-2">
-                    {exp.skills.map((skill) => (
+                    {exp.skills.map((skill, index) => (
                       <Button
-                        key={skill}
+                        key={`${skill}-${index}`}
                         className="px-3 py-1 rounded-full bg-gradient-to-r from-purple-600/20 to-pink-600/20 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)] transition-all duration-300 hover:-translate-y-1"
                       >
                         {skill}

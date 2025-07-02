@@ -1,9 +1,14 @@
 import { z } from "zod";
 
-export const contactSchema = z.object({
-  name: z.string().trim().min(1, "กรุณากรอกชื่อ"),
-  email: z.string().trim().min(1, "กรุณากรอกอีเมล"),
-  message: z.string().trim().min(1, "กรุณากรอกข้อความ"),
-});
+export const contactSchema = (t: (key: string) => string) =>
+  z.object({
+    name: z.string().trim().min(1, t("validate.name")),
+    email: z
+      .string()
+      .trim()
+      .min(1, t("validate.email"))
+      .email(t("validate.emailInvalid")),
+    message: z.string().trim().min(1, t("validate.message")),
+  });
 
-export type ContactForm = z.infer<typeof contactSchema>;
+export type ContactForm = z.infer<ReturnType<typeof contactSchema>>;

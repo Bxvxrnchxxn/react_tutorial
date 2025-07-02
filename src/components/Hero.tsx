@@ -1,14 +1,15 @@
 "use client";
-import React from "react";
 import { TypeAnimation } from "react-type-animation";
 import { Github, Linkedin, Mail, Sparkles, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { useTranslation } from "react-i18next";
 gsap.registerPlugin(ScrollToPlugin);
 
 const Hero = () => {
+  const { t } = useTranslation();
   const scrollToNext = () => {
     const target = document.querySelector<HTMLElement>("section + section");
     if (target) {
@@ -57,10 +58,10 @@ const Hero = () => {
         />
       </div>
       <div className="text-4xl md:text-7xl font-bold text-white">
-        Hi, I&apos;m{" "}
+        {t("hero.intro.greeting")}
         <span className="bg-gradient-to-t from-purple-400 to-pink-400 bg-clip-text text-transparent animate-shimmer-text">
-          <span className="inline">Bovorn</span>
-          <span className="hidden md:inline"> Dejsuwannachai</span>
+          <span className="inline">{t("hero.intro.firstname")}</span>
+          <span className="hidden md:inline"> {t("hero.intro.lastname")}</span>
         </span>
       </div>
       <div className="mt-6">
@@ -102,7 +103,8 @@ const Hero = () => {
           href="mailto:bovorn09871@gmail.com?subject=Hello&body=Hi"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:scale-110 transition-transform duration-200 cursor-pointer hover:rotate-20 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]"
+          className="hover:scale-110 transition-transform duration-200 cursor-pointer hover:rotate-20 
+          hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]"
         >
           <Mail size={28} />
         </Link>
@@ -110,15 +112,17 @@ const Hero = () => {
       <div className="space-x-4 flex flex-col md:flex-row gap-4 py-12">
         <Button
           onClick={scrollToExp}
-          className="cursor-pointer rounded-full text-base py-6 px-6 font-bold bg-gradient-to-r from-purple-600 to-pink-600 hover:scale-110 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]"
+          className="cursor-pointer rounded-full text-lg py-6 px-6 font-bold bg-gradient-to-r from-purple-600 to-pink-600 
+          hover:scale-110 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]"
         >
-          View Experience
+          {t("hero.button1")}
         </Button>
         <Button
           onClick={scrollToContact}
-          className="cursor-pointer rounded-full text-base py-6 px-6 font-bold text-purple-400 border-2 border-purple-400 hover:bg-purple-400 hover:text-white transition-all duration-300 bg-transparent hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]  "
+          className="cursor-pointer rounded-full text-lg py-6 px-6 font-bold text-purple-400 border-2 border-purple-400 
+          hover:bg-purple-400 hover:text-white transition-all duration-300 bg-transparent hover:scale-110 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]  "
         >
-          Get In Touch
+          {t("hero.button2")}
         </Button>
       </div>
       <div

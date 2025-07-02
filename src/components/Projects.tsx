@@ -4,12 +4,14 @@ import { DialogProjectDetail } from "./DialogProjectDetail";
 import React, { useLayoutEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink, Eye } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
 export const Projects = () => {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     if (!containerRef.current) return;
@@ -164,14 +166,12 @@ export const Projects = () => {
     >
       <div className="flex flex-col animate-float">
         <div className="md:text-5xl text-4xl font-bold mb-6 text-gray-100">
-          My Projects
+          {t("projects.title")}
         </div>
         <div className="animate-shimmer w-40 h-1.5 bg-gradient-to-r from-purple-400 to-pink-400 mb-6 mx-auto"></div>
       </div>
       <div className="md:text-lg text-base text-gray-300">
-        A collection of front-end projects centered on academic systems and
-        management tools, highlighting my skills in design, usability, and
-        real-world problem solving.
+        {t("projects.subtitle")}
       </div>
       <div className="grid grid-cols-1 gap-16 mt-12">
         {projects.map((project, index) => (
@@ -206,7 +206,7 @@ export const Projects = () => {
             {/* text content */}
             <div className="flex flex-col justify-center gap-6 px-2">
               <span className="text-sm font-semibold text-purple-400 uppercase reveal-text-line">
-                PROJECT {String(index + 1).padStart(2, "0")}
+                {t("projects.project")} {String(index + 1).padStart(2, "0")}
               </span>
               <h3 className="text-3xl md:text-4xl font-bold text-gray-100 reveal-text-line">
                 {project.title}
@@ -241,7 +241,7 @@ export const Projects = () => {
                   }}
                 >
                   <Github size={18} className="mr-2" />
-                  <span>Code</span>
+                  <span>{t("projects.button1")}</span>
                 </a>
 
                 <a
@@ -258,7 +258,7 @@ export const Projects = () => {
                   }}
                 >
                   <ExternalLink size={18} className="mr-2" />
-                  <span>Live Demo</span>
+                  <span>{t("projects.button2")}</span>
                 </a>
               </div>
             </div>

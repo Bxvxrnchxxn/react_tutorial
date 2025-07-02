@@ -3,6 +3,13 @@ import React from "react";
 import { Star, CodeXml, Code, Smartphone, ChevronDown } from "lucide-react";
 import BouncingWord from "@/components/BouncingWord";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import {
@@ -74,7 +81,7 @@ const About = () => {
         />
       </div>
       <div className="md:text-5xl text-4xl font-bold mb-4">
-        <BouncingWord word="About Me" span={0.35} />
+        <BouncingWord word={t("about.title")} span={0.35} />
       </div>
       <div className="flex flex-row gap-2 mb-4">
         <Star
@@ -109,20 +116,15 @@ const About = () => {
         />
       </div>
       <div className="mx-8 max-w-200 min-w-10 text-center py-7 text-xl text-gray-300">
-        Hello, my name is Bovorn Dejsuwannachai (Choon). I’m Frontend Developer
-        crafting responsive, user-friendly.
+        {t("about.introduce")}
       </div>
       <div className="flex flex-col md:flex-row gap-8 py-8">
         <div className="flex flex-col gap-8 md:flex-1 md:mx-30 mx-8 self-end">
           <p className="text-xl text-gray-300 max-w-250">
-            I work daily with Vue.js, Nuxt.js and Vuetify and tools like Docker,
-            GitHub and Postman. I thrive on clean code, performance tuning and
-            collaborative problem solving.
+            {t("about.paragraph1")}
           </p>
           <p className="text-xl text-gray-300 max-w-250">
-            As a Software Engineer at iNet (Internet Thailand Public Company
-            Limited.), I build and maintain scalable client portals and admin
-            dashboards. Let’s create something great together!
+            {t("about.paragraph2")}
           </p>
 
           <div className="flex gap-4">
