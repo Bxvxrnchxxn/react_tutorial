@@ -15,26 +15,6 @@ export const Experience = () => {
 
   const experiences: ExperienceItem[] = [
     {
-      name: "PortFolio",
-      role: "Frontend Developer",
-      company: "Learn by Myself",
-      period: "-",
-      location: "Bangkok, Thailand",
-      highlights: [
-        "Developed websites for new frameworks and libraries",
-        "Learning responsive design for mobile and desktop in new frameworks",
-        "Change mindset and learn new things",
-      ],
-      skills: [
-        "React",
-        "Next",
-        "Tailwind CSS",
-        "Radix UI",
-        "Github",
-        "Typescript",
-      ],
-    },
-    {
       name: "Software Engineer",
       role: "Frontend Developer",
       company: "Internet Thailand Co., Ltd.",

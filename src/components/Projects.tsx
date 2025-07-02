@@ -139,6 +139,23 @@ export const Projects = () => {
       codeLink: "",
       demoLink: "https://uat.thaijobjob.com/timestamp/",
     },
+    {
+      id: 5,
+      title: "PortFolio",
+      description:
+        "My personal portfolio website that using new frameworks and study new thing.",
+      image: "/imgs/portfolio.png",
+      technologies: [
+        "React",
+        "Next",
+        "Tailwind CSS",
+        "Radix UI",
+        "Github",
+        "Typescript",
+      ],
+      codeLink: "https://github.com/Bxvxrnchxxn/react_tutorial.git",
+      demoLink: "https://portfolio-bovorns-projects.vercel.app/",
+    },
   ];
   return (
     <div
