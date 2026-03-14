@@ -12,15 +12,10 @@ import {
 } from "./ui/dropdown-menu";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
 gsap.registerPlugin(ScrollToPlugin);
 
 const About = () => {
+  const { t } = useTranslation();
   const downloadFile = (path: string) => {
     const link = document.createElement("a");
     link.href = path;
