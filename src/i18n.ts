@@ -272,7 +272,10 @@ i18n
             },
             email: "Email",
             phone: "Phone",
-            location: "Location",
+            location: {
+              locale: "Location",
+              address: "Bangkok, Thailand",
+            },
           },
           validate: {
             name: "Please enter your name",
