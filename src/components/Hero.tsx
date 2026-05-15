@@ -6,9 +6,14 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useTranslation } from "react-i18next";
+import { HeroData } from "../../types/get_all";
 gsap.registerPlugin(ScrollToPlugin);
 
-const Hero = () => {
+type HeroProps = {
+  data: HeroData;
+};
+
+const Hero = ({ data }: HeroProps) => {
   const { t } = useTranslation();
   const scrollToNext = () => {
     const target = document.querySelector<HTMLElement>("section + section");
@@ -66,14 +71,7 @@ const Hero = () => {
       </div>
       <div className="mt-6">
         <TypeAnimation
-          sequence={[
-            "Frontend Developer",
-            2000,
-            "Software Engineer",
-            2000,
-            "Responsive Designer",
-            2000,
-          ]}
+          sequence={data.typing_texts.flatMap((text) => [text, 2000])}
           wrapper="span"
           speed={10}
           repeat={Infinity}
@@ -82,7 +80,7 @@ const Hero = () => {
       </div>
       <div className="flex flex-row gap-6 mt-16 text-gray-300">
         <Link
-          href="https://github.com/Bxvxrnchxxn"
+          href={data.github_url}
           target="_blank"
           rel="noopener noreferrer"
           className="hover:scale-110 transition-transform duration-200 cursor-pointer hover:rotate-20 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]"
@@ -91,7 +89,7 @@ const Hero = () => {
         </Link>
 
         <Link
-          href="https://www.linkedin.com/in/bxvxrnchxxn"
+          href={data.linkedin_url}
           target="_blank"
           rel="noopener noreferrer"
           className="hover:scale-110 transition-transform duration-200 cursor-pointer hover:-rotate-20 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]"
@@ -100,10 +98,10 @@ const Hero = () => {
         </Link>
 
         <Link
-          href="mailto:bovorn09871@gmail.com?subject=Hello&body=Hi"
+          href={`mailto:${data.email}?subject=Hello&body=Hi`}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:scale-110 transition-transform duration-200 cursor-pointer hover:rotate-20 
+          className="hover:scale-110 transition-transform duration-200 cursor-pointer hover:rotate-20
           hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]"
         >
           <Mail size={28} />

@@ -3,139 +3,41 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { ExperienceItem } from "../../types/get_all";
 
-export const Experience = () => {
-  const { t } = useTranslation();
-  type ExperienceItem = {
-    name: string;
-    role: string;
-    company: string;
-    period: string;
-    location: string;
-    highlights: string[];
-    skills: string[];
-  };
+type ExperienceProps = {
+  data: ExperienceItem[];
+};
 
-  const experiences: ExperienceItem[] = [
-    {
-      name: "Software Engineer",
-      role: "Frontend Developer",
-      company: "Internet Thailand Co., Ltd.",
-      period: "March 2025 – Current",
-      location: "Bangkok, Thailand",
-      highlights: [
-        "Developed websites for multiple roles",
-        "Impllemented responsive design for mobile and desktop",
-        "Plan and manage work in a systematic way",
-      ],
-      skills: [
-        "Vue",
-        "Nuxt",
-        "Vuetify",
-        "Github",
-        "Docker",
-        "Postman",
-        "Javascript",
-      ],
-    },
-    {
-      name: "ProofEngThailand",
-      role: "Frontend Developer",
-      company: "Freelance",
-      period: "January 2025 – Febuary 2025",
-      location: "Nakhon Pathom, Thailand",
-      highlights: [
-        "Developed websites for users and administrators",
-        "Impllemented responsive design for mobile and desktop",
-        "Optimize code for performance and scalability and SEO",
-      ],
-      skills: [
-        "Vue",
-        "Nuxt",
-        "Vuetify",
-        "Github",
-        "Docker",
-        "Postman",
-        "Javascript",
-      ],
-    },
-    {
-      name: "ProofEng Solution",
-      role: "Frontend Developer",
-      company: "Freelance",
-      period: "October 2024 – December 2024",
-      location: "Nakhon Pathom, Thailand",
-      highlights: [
-        "Developed websites for users and administrators",
-        "Impllemented responsive design for mobile and desktop",
-        "Optimize code for performance and scalability and SEO",
-      ],
-      skills: [
-        "Vue",
-        "Nuxt",
-        "Vuetify",
-        "Github",
-        "Docker",
-        "Postman",
-        "Javascript",
-      ],
-    },
-    {
-      name: "LASDB",
-      role: "Frontend Developer",
-      company: "Kasetsart University Kamphaeng Saen Campus",
-      period: "July 2024 – October 2024",
-      location: "Nakhon Pathom, Thailand",
-      highlights: [
-        "Developed websites for users and administrators",
-        "Impllemented responsive design for mobile and desktop",
-        "Plan and manage work in a systematic way",
-      ],
-      skills: [
-        "Vue",
-        "Nuxt",
-        "Vuetify",
-        "Github",
-        "Docker",
-        "Postman",
-        "Javascript",
-      ],
-    },
-    {
-      name: "Internship",
-      role: "Full-Stack Developer",
-      company: "Internet Thailand Co., Ltd.",
-      period: "April 2024 – June 2024",
-      location: "Bangkok, Thailand",
-      highlights: [
-        "Completed a 2-month Internship as a Full-Stack Developer",
-        "Gaining experience in frontend development",
-        "Gaining experience in backend development",
-      ],
-      skills: [
-        "Vue",
-        "Nuxt",
-        "Vuetify",
-        "Node.js",
-        "Express",
-        "MySQL",
-        "Javascript",
-      ],
-    },
-    {
-      name: "PR-TCAS 67",
-      role: "Infographic",
-      company: "Kasetsart University Kamphaeng Saen Campus",
-      period: "August 2023 – May 2024",
-      location: "Nakhon Pathom, Thailand",
-      highlights: [
-        "Designing the TCAS 67 infographic for the university",
-        "Develope skills in design , communication and teamwork",
-        "Change requirements to infographics",
-      ],
-      skills: ["Canva"],
-    },
-  ];
+const formatDate = (dateStr: string) => {
+  if (!dateStr) return "";
+  const [year, month] = dateStr.split("-");
+  return new Date(Number(year), Number(month) - 1).toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
+};
+
+const formatPeriod = (startDate: string, endDate: string, isPresent: boolean) =>
+  `${formatDate(startDate)} – ${isPresent ? "Present" : formatDate(endDate)}`;
+
+const parseHighlights = (description: string) =>
+  description
+    .split("\n")
+    .map((line) => line.replace(/^-\s*/, "").trim())
+    .filter(Boolean);
+
+export const Experience = ({ data }: ExperienceProps) => {
+  const { t, i18n } = useTranslation();
+  const experiences = data.map((exp) => ({
+    name: exp.namePosition,
+    role: exp.position,
+    company: exp.company,
+    period: formatPeriod(exp.startDate, exp.endDate, exp.isPresent),
+    location: exp.location,
+    highlights: parseHighlights(i18n.language === "th" ? exp.descriptionTH : exp.descriptionEN),
+    skills: exp.technologies.map((s) => s.charAt(0).toUpperCase() + s.slice(1)),
+  }));
   return (
     <div className="bg-slate-700 flex flex-col items-center justify-center min-h-screen py-16 relative">
       <div className="absolute inset-0 opacity-20 pointer-events-none z-0">

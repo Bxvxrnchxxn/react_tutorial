@@ -12,9 +12,20 @@ import {
 } from "./ui/dropdown-menu";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { AboutMeData } from "../../types/get_all";
 gsap.registerPlugin(ScrollToPlugin);
 
-const About = () => {
+type AboutProps = {
+  data: AboutMeData;
+};
+
+const getExpertiseIcon = (title: string) => {
+  if (title.toLowerCase().includes("backend")) return CodeXml;
+  if (title.toLowerCase().includes("responsive")) return Smartphone;
+  return Code;
+};
+
+const About = ({ data }: AboutProps) => {
   const { t } = useTranslation();
   const downloadFile = (path: string) => {
     const link = document.createElement("a");
@@ -44,23 +55,11 @@ const About = () => {
       });
     }
   };
-  const skills = [
-    {
-      icon: Code,
-      name: "Frontend Development",
-      description: "React, Next, Tailwind CSS",
-    },
-    {
-      icon: Code,
-      name: "Frontend Development",
-      description: "Vue, Nuxt, Vuetify",
-    },
-    {
-      icon: Smartphone,
-      name: "Responsive Design",
-      description: "Designing for all devices",
-    },
-  ];
+  const skills = data.expertiseSection.items.map((item) => ({
+    icon: getExpertiseIcon(item.title),
+    name: item.title,
+    description: item.subtitle,
+  }));
   return (
     <div className="relative bg-slate-700 text-gray-100 flex flex-col items-center justify-center min-h-screen py-10">
       {/* decoration */}

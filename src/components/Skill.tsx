@@ -15,6 +15,7 @@ import {
   SiVuetify,
   SiDart,
   SiPostman,
+  SiCanva,
 } from "react-icons/si";
 import {
   RiTailwindCssFill,
@@ -24,8 +25,34 @@ import {
 import { BiLogoTypescript } from "react-icons/bi";
 import { VscVscode } from "react-icons/vsc";
 import { useTranslation } from "react-i18next";
+import { SkillTechnologies } from "../../types/get_all";
 
-export const Skill = () => {
+type SkillProps = {
+  data: SkillTechnologies;
+};
+
+const iconMap: Record<string, React.ReactElement> = {
+  react: <FaReact className="text-blue-400" />,
+  nextjs: <SiNextdotjs className="text-gray-100" />,
+  vue: <FaVuejs className="text-green-500" />,
+  nuxt: <SiNuxtdotjs className="text-green-500" />,
+  tailwind: <RiTailwindCssFill className="text-cyan-400" />,
+  vuetify: <SiVuetify className="text-sky-400" />,
+  html: <FaHtml5 className="text-orange-500" />,
+  css: <IoLogoCss3 className="text-blue-500" />,
+  javascript: <RiJavascriptFill className="text-amber-300" />,
+  typescript: <BiLogoTypescript className="text-blue-500" />,
+  dart: <SiDart className="text-sky-400" />,
+  flutter: <RiFlutterFill className="text-sky-400" />,
+  figma: <FaFigma className="text-orange-500" />,
+  canva: <SiCanva className="text-teal-400" />,
+  github: <FaGithub className="text-gray-100" />,
+  docker: <FaDocker className="text-blue-500" />,
+  vscode: <VscVscode className="text-sky-500" />,
+  postman: <SiPostman className="text-orange-500" />,
+};
+
+export const Skill = ({ data }: SkillProps) => {
   const { t } = useTranslation();
   const getLevelColor = (level: number) => {
     switch (level) {
@@ -67,110 +94,19 @@ export const Skill = () => {
       />
     ));
   };
-  const skillCategories = [
-    {
-      title: "Frameworks & Libraries",
-      skills: [
-        { name: "React", icon: <FaReact />, level: 1, color: "text-blue-500" },
-        {
-          name: "Next.js",
-          icon: <SiNextdotjs />,
-          level: 1,
-          color: "text-zinc-950",
-        },
-        {
-          name: "Vue.js",
-          icon: <FaVuejs />,
-          level: 3,
-          color: "text-green-700",
-        },
-        {
-          name: "Nuxt.js",
-          icon: <SiNuxtdotjs />,
-          level: 3,
-          color: "text-green-700",
-        },
-        {
-          name: "Tailwind CSS",
-          icon: <RiTailwindCssFill />,
-          level: 1,
-          color: "text-cyan-400",
-        },
-        {
-          name: "Vuetify",
-          icon: <SiVuetify />,
-          level: 4,
-          color: "text-sky-400",
-        },
-      ],
-    },
-    {
-      title: "Languages",
-      skills: [
-        { name: "HTML", icon: <FaHtml5 />, level: 3, color: "text-orange-600" },
-        { name: "CSS", icon: <IoLogoCss3 />, level: 3, color: "text-blue-600" },
-        {
-          name: "JavaScript",
-          icon: <RiJavascriptFill />,
-          level: 2,
-          color: "text-amber-300",
-        },
-        {
-          name: "TypeScript",
-          icon: <BiLogoTypescript />,
-          level: 1,
-          color: "text-blue-500",
-        },
-        { name: "Dart", icon: <SiDart />, level: 1, color: "text-sky-400" },
-      ],
-    },
-    {
-      title: "Mobile & Design",
-      skills: [
-        {
-          name: "Flutter",
-          icon: <RiFlutterFill />,
-          level: 1,
-          color: "text-sky-400",
-        },
-        {
-          name: "Figma",
-          icon: <FaFigma />,
-          level: 1,
-          color: "text-orange-500",
-        },
-      ],
-    },
-    {
-      title: "Tools",
-      skills: [
-        {
-          name: "GitHub",
-          icon: <FaGithub />,
-          level: 2,
-          color: "text-zinc-950",
-        },
-        {
-          name: "Docker",
-          icon: <FaDocker />,
-          level: 2,
-          color: "text-blue-500",
-        },
-        {
-          name: "VS Code",
-          icon: <VscVscode />,
-          level: 4,
-          color: "text-sky-600",
-        },
-        {
-          name: "Postman",
-          icon: <SiPostman />,
-          level: 3,
-          color: "text-orange-500",
-        },
-      ],
-    },
-  ];
+  const skillCategories = data.skill_sections.map((section) => ({
+    title: section.title,
+    skills: [...section.items]
+      .sort((a, b) => a.order - b.order)
+      .map((item) => ({
+        name: item.name,
+        icon: iconMap[item.icon] ?? <FaReact />,
+        level: item.score,
+      })),
+  }));
+
+  const statColors = ["text-purple-400", "text-pink-400", "text-cyan-400", "text-green-400"];
+  const stats = [...data.summary_stats].sort((a, b) => a.order - b.order);
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-slate-800 py-16 px-8">
       <div className="absolute inset-0 pointer-events-none">
@@ -199,7 +135,7 @@ export const Skill = () => {
                 <div key={skill.name} className="mb-6 mt-8 ">
                   <div className="flex items-center justify-between gap-2 text-gray-300 text-lg font-medium">
                     <div className="flex flex-row gap-2 items-center">
-                      <div className={`text-xl ${skill.color}`}>
+                      <div className="text-xl">
                         {skill.icon}
                       </div>
                       <div>{skill.name}</div>
@@ -230,50 +166,18 @@ export const Skill = () => {
         ))}
       </div>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-8 md:px-[6vw] text-center w-full">
-        <div
-          className="bg-slate-900/60 backdrop-blur-sm p-6 rounded-xl light:bg-white/50 glow-on-hover hover:scale-105
-        transition-all duration-300 hover:shadow-slate-900/60"
-        >
-          <div className="text-3xl font-bold text-purple-400 mb-2 light:text-purple-600">
-            15+
+        {stats.map((stat, index) => (
+          <div
+            key={stat.id}
+            className="bg-slate-900/60 backdrop-blur-sm p-6 rounded-xl light:bg-white/50 glow-on-hover hover:scale-105
+          transition-all duration-300 hover:shadow-slate-900/60"
+          >
+            <div className={`text-3xl font-bold mb-2 ${statColors[index % statColors.length]}`}>
+              {stat.value}
+            </div>
+            <div className="text-gray-300 light:text-gray-600">{stat.label}</div>
           </div>
-          <div className="text-gray-300 light:text-gray-600">
-            {t("skills.tech")}
-          </div>
-        </div>
-        <div
-          className="bg-slate-900/60 backdrop-blur-sm p-6 rounded-xl light:bg-white/50 glow-on-hover hover:scale-105
-        transition-all duration-300 hover:shadow-slate-900/60"
-        >
-          <div className="text-3xl font-bold text-pink-400 mb-2 light:text-pink-600">
-            0 - 1
-          </div>
-          <div className="text-gray-300 light:text-gray-600">
-            {t("skills.exp")}
-          </div>
-        </div>
-        <div
-          className="bg-slate-900/60 backdrop-blur-sm p-6 rounded-xl light:bg-white/50 glow-on-hover hover:scale-105
-        transition-all duration-300 hover:shadow-slate-900/60"
-        >
-          <div className="text-3xl font-bold text-cyan-400 mb-2 light:text-cyan-600">
-            4
-          </div>
-          <div className="text-gray-300 light:text-gray-600">
-            {t("skills.project")}
-          </div>
-        </div>
-        <div
-          className="bg-slate-900/60 backdrop-blur-sm p-6 rounded-xl light:bg-white/50 glow-on-hover hover:scale-105
-        transition-all duration-300 hover:shadow-slate-900/60"
-        >
-          <div className="text-3xl font-bold text-green-400 mb-2 light:text-green-600">
-            ∞
-          </div>
-          <div className="text-gray-300 light:text-gray-600">
-            {t("skills.learn")}
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

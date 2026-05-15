@@ -19,9 +19,14 @@ import { contactSchema, ContactForm } from "@/validation/contact.schema";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
 import withReactContent from "sweetalert2-react-content";
+import { GetInTouchData } from "../../types/get_all";
 
-export const Contact = () => {
-  const { t } = useTranslation();
+type ContactProps = {
+  data: GetInTouchData;
+};
+
+export const Contact = ({ data }: ContactProps) => {
+  const { t, i18n } = useTranslation();
   const ReactSwal = withReactContent(Swal);
   const {
     register,
@@ -82,7 +87,7 @@ export const Contact = () => {
               <div className="text-gray-100 font-semibold">
                 {t("contact.email")}
               </div>
-              <div className="text-gray-300 font">bovorn09871@gmail.com</div>
+              <div className="text-gray-300 font">{data.email}</div>
             </div>
           </div>
           <div className="flex flex-row gap-4 justify-center items-center">
@@ -93,7 +98,7 @@ export const Contact = () => {
               <div className="text-gray-100 font-semibold">
                 {t("contact.phone")}
               </div>
-              <div className="text-gray-300 font">+66 983799686</div>
+              <div className="text-gray-300 font">{data.phone}</div>
             </div>
           </div>
           <div className="flex flex-row gap-4 justify-center items-center">
@@ -105,7 +110,7 @@ export const Contact = () => {
                 {t("contact.location.locale")}
               </div>
               <div className="text-gray-300 font">
-                {t("contact.location.address")}
+                {i18n.language === "th" ? data.location_th : data.location_en}
               </div>
             </div>
           </div>

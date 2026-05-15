@@ -8,10 +8,15 @@ import { useTranslation } from "react-i18next";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ProjectItem } from "../../types/get_all";
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-export const Projects = () => {
-  const { t } = useTranslation();
+type ProjectsProps = {
+  data: ProjectItem[];
+};
+
+export const Projects = ({ data }: ProjectsProps) => {
+  const { t, i18n } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     if (!containerRef.current) return;
@@ -71,94 +76,18 @@ export const Projects = () => {
       });
   }, []);
 
-  const projects = [
-    {
-      id: 1,
-      title: "LASDB",
-      description:
-        "Website compregensive academic management platform covering books, article, jounals, projects, patents, research and awards.",
-      image: "/imgs/lasdb.png",
-      technologies: [
-        "Vue",
-        "Nuxt",
-        "Vuetify",
-        "Github",
-        "Docker",
-        "Postman",
-        "Javascript",
-      ],
-      codeLink: "",
-      demoLink: "https://oos.flas.kps.ku.ac.th/lasdb/Home",
-    },
-    {
-      id: 2,
-      title: "ProofEng Solution",
-      description: "Website English grammar checking and proofreading service.",
-      image: "/imgs/proofeng.png",
-      technologies: [
-        "Vue",
-        "Nuxt",
-        "Vuetify",
-        "Github",
-        "Docker",
-        "Postman",
-        "Javascript",
-      ],
-      codeLink: "",
-      demoLink: "https://www.proofengsolutions.com/Home",
-    },
-    {
-      id: 3,
-      title: "ProofEngThailand",
-      description: "Website English grammar checking and proofreading service.",
-      image: "/imgs/proofengthailand.png",
-      technologies: [
-        "Vue",
-        "Nuxt",
-        "Vuetify",
-        "Github",
-        "Docker",
-        "Postman",
-        "Javascript",
-      ],
-      codeLink: "",
-      demoLink: "https://proofengthailand.com/home",
-    },
-    {
-      id: 4,
-      title: "Clockin",
-      description: "Website for checkin-out working and manage human resource.",
-      image: "/imgs/timestamp.png",
-      technologies: [
-        "Vue",
-        "Nuxt",
-        "Vuetify",
-        "Github",
-        "Docker",
-        "Postman",
-        "Javascript",
-      ],
-      codeLink: "",
-      demoLink: "https://uat.thaijobjob.com/timestamp/",
-    },
-    {
-      id: 5,
-      title: "PortFolio",
-      description:
-        "My personal portfolio website that using new frameworks and study new thing.",
-      image: "/imgs/portfolio.png",
-      technologies: [
-        "React",
-        "Next",
-        "Tailwind CSS",
-        "Radix UI",
-        "Github",
-        "Typescript",
-      ],
-      codeLink: "https://github.com/Bxvxrnchxxn/react_tutorial.git",
-      demoLink: "https://portfolio-bovorns-projects.vercel.app/",
-    },
-  ];
+  const projects = data.map((p) => ({
+    id: p.project_id,
+    title: p.project_name,
+    description: i18n.language === "th" ? p.description_th : p.description_en,
+    image: p.image_url,
+    technologies: p.technologies.map(
+      (t) => t.charAt(0).toUpperCase() + t.slice(1)
+    ),
+    codeLink: p.github_url,
+    demoLink: p.live_url,
+    raw: p,
+  }));
   return (
     <div
       ref={containerRef}
@@ -192,7 +121,11 @@ export const Projects = () => {
                 className="absolute inset-0 bg-gradient-to-b from-purple-500/0 via-purple-500/20 to-purple-500/70 
                  opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               />
-              <DialogProjectDetail projectId={project.id}>
+              <DialogProjectDetail
+                project={project.raw}
+                description={project.description}
+                technologies={project.technologies}
+              >
                 <div
                   className="sm:reveal-image absolute top-5 right-6 opacity-0 md:group-hover:opacity-100  transition-all duration-300 
                  w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center cursor-pointer 
