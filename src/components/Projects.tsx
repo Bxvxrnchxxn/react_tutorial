@@ -18,63 +18,73 @@ type ProjectsProps = {
 export const Projects = ({ data }: ProjectsProps) => {
   const { t, i18n } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
+  // Image effect — only re-runs when data changes, not on language switch
   useLayoutEffect(() => {
     if (!containerRef.current) return;
-
-    // batch สำหรับภาพ
-    ScrollTrigger.batch(".reveal-image", {
-      start: "top 70%",
-      onEnter: (batch) => {
-        gsap.to(batch, {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out",
-          stagger: 0.1,
-        });
-      },
-      onLeaveBack: (batch) => {
-        gsap.to(batch, {
-          autoAlpha: 0,
-          y: 30,
-          duration: 0.8,
-          ease: "power2.out",
-          stagger: 0.1,
-        });
-      },
-    });
-
-    // batch สำหรับแต่ละบรรทัดของข้อความ
-    containerRef.current
-      .querySelectorAll<HTMLElement>(".reveal-text-line")
-      .forEach((el) => {
-        const split = SplitText.create(el, {
-          type: "lines",
-          linesClass: "line-child",
-        });
-        ScrollTrigger.batch(split.lines, {
-          start: "top 80%",
-          onEnter: (batch) => {
-            gsap.to(batch, {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.6,
-              ease: "power3.out",
-              stagger: 0.1,
-            });
-          },
-          onLeaveBack: (batch) => {
-            gsap.to(batch, {
-              autoAlpha: 0,
-              y: 50,
-              duration: 0.6,
-              ease: "power3.out",
-              stagger: 0.1,
-            });
-          },
-        });
+    const ctx = gsap.context(() => {
+      ScrollTrigger.batch(".reveal-image", {
+        start: "top 70%",
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            stagger: 0.1,
+          });
+        },
+        onLeaveBack: (batch) => {
+          gsap.to(batch, {
+            autoAlpha: 0,
+            y: 30,
+            duration: 0.8,
+            ease: "power2.out",
+            stagger: 0.1,
+          });
+        },
       });
-  }, []);
+    }, containerRef);
+    return () => ctx.revert();
+  }, [data]);
+
+  // Text effect — re-runs on language change; key={i18n.language} on the text
+  // container forces React to unmount old elements before ctx.revert() runs,
+  // so SplitText never restores stale innerHTML over React's new text.
+  useLayoutEffect(() => {
+    if (!containerRef.current) return;
+    const ctx = gsap.context(() => {
+      containerRef.current!
+        .querySelectorAll<HTMLElement>(".reveal-text-line")
+        .forEach((el) => {
+          const split = SplitText.create(el, {
+            type: "lines",
+            linesClass: "line-child",
+          });
+          ScrollTrigger.batch(split.lines, {
+            start: "top 80%",
+            onEnter: (batch) => {
+              gsap.to(batch, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power3.out",
+                stagger: 0.1,
+              });
+            },
+            onLeaveBack: (batch) => {
+              gsap.to(batch, {
+                autoAlpha: 0,
+                y: 50,
+                duration: 0.6,
+                ease: "power3.out",
+                stagger: 0.1,
+              });
+            },
+          });
+        });
+    }, containerRef);
+    return () => ctx.revert();
+  }, [data, i18n.language]);
 
   const projects = data.map((p) => ({
     id: p.project_id,
@@ -137,7 +147,7 @@ export const Projects = ({ data }: ProjectsProps) => {
             </div>
 
             {/* text content */}
-            <div className="flex flex-col justify-center gap-6 px-2">
+            <div key={i18n.language} className="flex flex-col justify-center gap-6 px-2">
               <span className="text-sm font-semibold text-purple-400 uppercase reveal-text-line">
                 {t("projects.project")} {String(index + 1).padStart(2, "0")}
               </span>

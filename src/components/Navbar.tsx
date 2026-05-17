@@ -18,7 +18,7 @@ const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [closing, setClosing] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState("th");
   const OFFSET = 50;
   const { t, i18n, ready } = useTranslation();
 
@@ -31,7 +31,7 @@ const Navigation = () => {
       { href: "projects", label: t("navbar.projects") },
       { href: "contact", label: t("navbar.contact") },
     ],
-    [t]
+    [t],
   );
 
   useEffect(() => {
@@ -190,6 +190,33 @@ const Navigation = () => {
               </Link>
             </li>
           ))}
+          <li
+            style={{ animationDelay: `${pageItems.length * 0.3}s` }}
+            className="animate-fade-in-left px-6 pt-1 pb-3 flex items-center gap-3"
+          >
+            <Globe size={18} className="text-gray-400" />
+            <button
+              onClick={() => changeLanguage("th")}
+              className={`text-sm font-medium transition-colors duration-200 ${
+                language === "th"
+                  ? "text-purple-400 underline underline-offset-4"
+                  : "text-gray-400 hover:text-gray-100"
+              }`}
+            >
+              ไทย
+            </button>
+            <span className="text-gray-600">|</span>
+            <button
+              onClick={() => changeLanguage("en")}
+              className={`text-sm font-medium transition-colors duration-200 ${
+                language === "en"
+                  ? "text-purple-400 underline underline-offset-4"
+                  : "text-gray-400 hover:text-gray-100"
+              }`}
+            >
+              English
+            </button>
+          </li>
         </ul>
       )}
     </nav>
