@@ -10,7 +10,7 @@ import {
 import { Button } from "./ui/button";
 import { Github, ExternalLink } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { ProjectItem } from "../../types/get_all";
+import { ProjectItem } from "../../types/projects";
 
 interface Props {
   project: ProjectItem;

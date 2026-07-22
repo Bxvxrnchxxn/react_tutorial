@@ -1,13 +1,10 @@
 "use client"
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { ExperienceItem } from "../../types/get_all";
-
-type ExperienceProps = {
-  data: ExperienceItem[];
-};
+import { ExperienceItem } from "../../types/experience";
+import { getExperience } from "../../service/experience";
 
 const formatDate = (dateStr: string) => {
   if (!dateStr) return "";
@@ -27,8 +24,18 @@ const parseHighlights = (description: string) =>
     .map((line) => line.replace(/^-\s*/, "").trim())
     .filter(Boolean);
 
-export const Experience = ({ data }: ExperienceProps) => {
+export const Experience = () => {
   const { t, i18n } = useTranslation();
+  const [data, setData] = useState<ExperienceItem[] | null>(null);
+
+  useEffect(() => {
+    getExperience()
+      .then((res) => setData(res.data))
+      .catch(console.error);
+  }, []);
+
+  if (!data) return null;
+
   const experiences = data.map((exp) => ({
     name: exp.namePosition,
     role: exp.position,

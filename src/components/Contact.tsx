@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import {
   Mail,
@@ -19,15 +19,19 @@ import { contactSchema, ContactForm } from "@/validation/contact.schema";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
 import withReactContent from "sweetalert2-react-content";
-import { GetInTouchData } from "../../types/get_all";
+import { GetInTouchData } from "../../types/get_in_touch";
+import { getInTouch } from "../../service/get_in_touch";
 
-type ContactProps = {
-  data: GetInTouchData;
-};
-
-export const Contact = ({ data }: ContactProps) => {
+export const Contact = () => {
   const { t, i18n } = useTranslation();
   const ReactSwal = withReactContent(Swal);
+  const [data, setData] = useState<GetInTouchData | null>(null);
+
+  useEffect(() => {
+    getInTouch()
+      .then((res) => setData(res.data))
+      .catch(console.error);
+  }, []);
   const {
     register,
     handleSubmit,
@@ -73,6 +77,9 @@ export const Contact = ({ data }: ContactProps) => {
       });
     }
   };
+
+  if (!data) return null;
+
   return (
     <div className="bg-slate-700 flex flex-col items-center justify-center min-h-screen py-16 relative">
       <div className="absolute inset-0 pointer-events-none">
@@ -97,7 +104,7 @@ export const Contact = ({ data }: ContactProps) => {
         <div className="animate-shimmer w-40 h-1.5 bg-gradient-to-r from-purple-400 to-pink-400 mb-6 mx-auto inline"></div>
       </div>
       <div className="align-center text-gray-100 w-full px-12 md:text-lg text-base text-center pb-8">
-        {t("contact.subtitle")}
+        {i18n.language === "th" ? data.description_th : data.description_en}
       </div>
       <div className="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0 md:gap-[20vw] gap-6 items-start justify-start mt-12">
         <div className="w-full md:w-1/2 flex flex-col items-start justify-center gap-10">

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Star, CodeXml, Code, Smartphone, ChevronDown } from "lucide-react";
 import BouncingWord from "@/components/BouncingWord";
 import { Button } from "@/components/ui/button";
@@ -12,12 +12,9 @@ import {
 } from "./ui/dropdown-menu";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { AboutMeData } from "../../types/get_all";
+import { AboutMeData } from "../../types/about_me";
+import { getAboutMe } from "../../service/about_me";
 gsap.registerPlugin(ScrollToPlugin);
-
-type AboutProps = {
-  data: AboutMeData;
-};
 
 const getExpertiseIcon = (title: string) => {
   if (title.toLowerCase().includes("backend")) return CodeXml;
@@ -25,8 +22,15 @@ const getExpertiseIcon = (title: string) => {
   return Code;
 };
 
-const About = ({ data }: AboutProps) => {
-  const { t } = useTranslation();
+const About = () => {
+  const { t, i18n } = useTranslation();
+  const [data, setData] = useState<AboutMeData | null>(null);
+
+  useEffect(() => {
+    getAboutMe()
+      .then((res) => setData(res.data))
+      .catch(console.error);
+  }, []);
   const downloadFile = (path: string) => {
     const link = document.createElement("a");
     link.href = path;
@@ -55,6 +59,9 @@ const About = ({ data }: AboutProps) => {
       });
     }
   };
+
+  if (!data) return null;
+
   const skills = data.expertiseSection.items.map((item) => ({
     icon: getExpertiseIcon(item.title),
     name: item.title,
@@ -110,15 +117,15 @@ const About = ({ data }: AboutProps) => {
         />
       </div>
       <div className="mx-8 max-w-200 min-w-10 text-center py-7 text-xl text-gray-300">
-        {t("about.introduce")}
+        {i18n.language === "th" ? data.greeting_th : data.greeting_en}
       </div>
       <div className="flex flex-col md:flex-row gap-8 py-8">
         <div className="flex flex-col gap-8 md:flex-1 md:mx-30 mx-8 self-end">
           <p className="text-xl text-gray-300 max-w-250">
-            {t("about.paragraph1")}
+            {i18n.language === "th" ? data.description_th : data.description_en}
           </p>
           <p className="text-xl text-gray-300 max-w-250">
-            {t("about.paragraph2")}
+            {i18n.language === "th" ? data.sub_description_th : data.sub_description_en}
           </p>
 
           <div className="flex gap-4">

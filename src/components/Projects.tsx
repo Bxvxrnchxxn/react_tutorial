@@ -1,23 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { DialogProjectDetail } from "./DialogProjectDetail";
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink, Eye } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ProjectItem } from "../../types/get_all";
+import { ProjectItem } from "../../types/projects";
+import { getProjects } from "../../service/projects";
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-type ProjectsProps = {
-  data: ProjectItem[];
-};
-
-export const Projects = ({ data }: ProjectsProps) => {
+export const Projects = () => {
   const { t, i18n } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [data, setData] = useState<ProjectItem[] | null>(null);
+
+  useEffect(() => {
+    getProjects()
+      .then((res) => setData(res.data))
+      .catch(console.error);
+  }, []);
   // Image effect — only re-runs when data changes, not on language switch
   useLayoutEffect(() => {
     if (!containerRef.current) return;
@@ -85,6 +89,8 @@ export const Projects = ({ data }: ProjectsProps) => {
     }, containerRef);
     return () => ctx.revert();
   }, [data, i18n.language]);
+
+  if (!data) return null;
 
   const projects = data.map((p) => ({
     id: p.project_id,

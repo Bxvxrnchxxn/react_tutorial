@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import { Github, Linkedin, Mail, Sparkles, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,15 +7,19 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { useTranslation } from "react-i18next";
-import { HeroData } from "../../types/get_all";
+import { HeroData } from "../../types/hero";
+import { getHero } from "../../service/hero";
 gsap.registerPlugin(ScrollToPlugin);
 
-type HeroProps = {
-  data: HeroData;
-};
+const Hero = () => {
+  const { t, i18n } = useTranslation();
+  const [data, setData] = useState<HeroData | null>(null);
 
-const Hero = ({ data }: HeroProps) => {
-  const { t } = useTranslation();
+  useEffect(() => {
+    getHero()
+      .then((res) => setData(res.data))
+      .catch(console.error);
+  }, []);
   const scrollToNext = () => {
     const target = document.querySelector<HTMLElement>("section + section");
     if (target) {
@@ -45,6 +50,14 @@ const Hero = ({ data }: HeroProps) => {
       });
     }
   };
+
+  if (!data) return null;
+
+  const [firstName, ...restName] = (
+    i18n.language === "th" ? data.fullname_th : data.fullname_en
+  ).split(" ");
+  const lastName = restName.join(" ");
+
   return (
     <div className="flex items-center justify-center min-h-screen flex-col relative">
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -65,8 +78,8 @@ const Hero = ({ data }: HeroProps) => {
       <div className="text-4xl md:text-7xl font-bold text-white">
         {t("hero.intro.greeting")}
         <span className="bg-gradient-to-t from-purple-400 to-pink-400 bg-clip-text text-transparent animate-shimmer-text">
-          <span className="inline">{t("hero.intro.firstname")}</span>
-          <span className="hidden md:inline"> {t("hero.intro.lastname")}</span>
+          <span className="inline">{firstName}</span>
+          <span className="hidden md:inline"> {lastName}</span>
         </span>
       </div>
       <div className="mt-6">

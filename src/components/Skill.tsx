@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaReact,
   FaVuejs,
@@ -47,11 +47,8 @@ import { IoLogoCss3 } from "react-icons/io";
 import { BiLogoTypescript } from "react-icons/bi";
 import { VscVscode } from "react-icons/vsc";
 import { useTranslation } from "react-i18next";
-import { SkillTechnologies } from "../../types/get_all";
-
-type SkillProps = {
-  data: SkillTechnologies;
-};
+import { SkillTechnologies } from "../../types/skill_technologies";
+import { getSkillTechnologies } from "../../service/skill_technologies";
 
 const iconMap: Record<string, React.ReactElement> = {
   react: <FaReact className="text-blue-400" />,
@@ -96,8 +93,16 @@ const iconMap: Record<string, React.ReactElement> = {
   python: <FaPython className="text-yellow-500" />,
 };
 
-export const Skill = ({ data }: SkillProps) => {
+export const Skill = () => {
   const { t } = useTranslation();
+  const [data, setData] = useState<SkillTechnologies | null>(null);
+
+  useEffect(() => {
+    getSkillTechnologies()
+      .then((res) => setData(res.data))
+      .catch(console.error);
+  }, []);
+
   const getLevelColor = (level: number) => {
     switch (level) {
       case 1:
@@ -138,6 +143,9 @@ export const Skill = ({ data }: SkillProps) => {
       />
     ));
   };
+
+  if (!data) return null;
+
   const skillCategories = data.skill_sections.map((section) => ({
     title: section.title,
     skills: [...section.items]
