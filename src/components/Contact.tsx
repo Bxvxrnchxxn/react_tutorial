@@ -32,24 +32,46 @@ export const Contact = ({ data }: ContactProps) => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, touchedFields },
+    formState: { errors, touchedFields, isSubmitting },
   } = useForm<ContactForm>({
     resolver: zodResolver(contactSchema(t)),
     mode: "onBlur",
   });
 
-  const onSubmit = (data: ContactForm) => {
-    console.log("send =>", data);
-    ReactSwal.fire({
-      title: "Sorry!",
-      text: "This Functions is Not Available Yet!",
-      icon: "info",
-      color: "#f3f4f6",
-      background: "#45556c",
-      showConfirmButton: false,
-      timer: 3000,
-    });
-    reset();
+  const onSubmit = async (formData: ContactForm) => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/inbox/create`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!res.ok) throw new Error();
+
+      ReactSwal.fire({
+        title: t("contact.form.success_title"),
+        text: t("contact.form.success_text"),
+        icon: "success",
+        color: "#f3f4f6",
+        background: "#45556c",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+      reset();
+    } catch {
+      ReactSwal.fire({
+        title: t("contact.form.error_title"),
+        text: t("contact.form.error_text"),
+        icon: "error",
+        color: "#f3f4f6",
+        background: "#45556c",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
   };
   return (
     <div className="bg-slate-700 flex flex-col items-center justify-center min-h-screen py-16 relative">
@@ -193,11 +215,13 @@ export const Contact = ({ data }: ContactProps) => {
             {/* BUTTON */}
             <Button
               type="submit"
-              className="group w-full bg-gradient-to-r from-purple-600 to-pink-600 
-              hover:scale-105 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]"
+              disabled={isSubmitting}
+              className="group w-full bg-gradient-to-r from-purple-600 to-pink-600
+              hover:scale-105 transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(168,85,247,1)]
+              disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               <Send size={18} className="mr-2 group-active:animate-send" />{" "}
-              {t("contact.form.submit")}
+              {isSubmitting ? t("contact.form.sending") : t("contact.form.submit")}
             </Button>
           </form>
         </div>
