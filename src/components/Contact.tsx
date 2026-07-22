@@ -21,6 +21,7 @@ import { useTranslation } from "react-i18next";
 import withReactContent from "sweetalert2-react-content";
 import { GetInTouchData } from "../../types/get_in_touch";
 import { getInTouch } from "../../service/get_in_touch";
+import { createInbox } from "../../service/inbox";
 
 export const Contact = () => {
   const { t, i18n } = useTranslation();
@@ -44,16 +45,7 @@ export const Contact = () => {
 
   const onSubmit = async (formData: ContactForm) => {
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/inbox/create`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
-      );
-
-      if (!res.ok) throw new Error();
+      await createInbox(formData);
 
       ReactSwal.fire({
         title: t("contact.form.success_title"),

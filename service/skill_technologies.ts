@@ -1,9 +1,9 @@
+import { apiClient } from "./apiClient";
 import { SkillTechnologiesApiResponse } from "../types/skill_technologies";
 
 export const getSkillTechnologies = async (): Promise<SkillTechnologiesApiResponse> => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/skill_technologies/get`
+  const res = await apiClient.get<SkillTechnologiesApiResponse>(
+    "/skill_technologies/get"
   );
-  if (!res.ok) throw new Error("Failed to fetch skill technologies");
-  return res.json();
+  return res.data;
 };
