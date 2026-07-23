@@ -45,7 +45,10 @@ export const Contact = () => {
 
   const onSubmit = async (formData: ContactForm) => {
     try {
-      await createInbox(formData);
+      await createInbox({
+        ...formData,
+        lang: i18n.language === "th" ? "th" : "en",
+      });
 
       ReactSwal.fire({
         title: t("contact.form.success_title"),

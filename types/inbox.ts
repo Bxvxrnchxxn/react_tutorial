@@ -2,6 +2,7 @@ export type InboxCreatePayload = {
   name: string;
   email: string;
   message: string;
+  lang: "th" | "en";
 };
 
 export type InboxCreateApiResponse = {
